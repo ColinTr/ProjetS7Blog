@@ -9,11 +9,13 @@ import java.util.Map;
 
 public abstract class Connexion {
 
+    private static EntityManagerFactory emf;
     private static EntityManager em;
 
     public static boolean init(String mode){
         try {
-            em = Persistence.createEntityManagerFactory(mode).createEntityManager();
+            emf = Persistence.createEntityManagerFactory(mode);
+            em = emf.createEntityManager();
             return true;
         } catch(PersistenceException a){
             return false;
@@ -25,12 +27,14 @@ public abstract class Connexion {
         properties.put("javax.persistence.jdbc.url", url);
         properties.put("javax.persistence.jdbc.user", user);
         properties.put("javax.persistence.jdbc.password", password);
-        em = Persistence.createEntityManagerFactory(mode,properties);
+        emf = Persistence.createEntityManagerFactory(mode,properties);
+        em = emf.createEntityManager();
     }
 
 
     public static void close(){
         em.close();
+        emf.close();
     }
 
     public static EntityManager getEntityManager() { return em; }
