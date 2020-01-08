@@ -1,4 +1,4 @@
-package java.vue;
+package vue;
 
 
 import javafx.fxml.Initializable;

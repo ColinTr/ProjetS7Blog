@@ -1,4 +1,4 @@
-package java.controleur;
+package controleur;
 
 public class UtilisateurDAO {
 }

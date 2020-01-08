@@ -1,7 +1,6 @@
-package java.controleur;
+package controleur;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceException;
 import java.util.HashMap;
@@ -20,14 +19,21 @@ public abstract class Connexion {
         }
     }
 
+    public static boolean begin(){
+        return true;
+    }
+
+    public static boolean commit(){
+        return true;
+    }
+
     public static void init(String mode, String url, String user, String password){
         Map<String, String> properties = new HashMap<>();
         properties.put("javax.persistence.jdbc.url", url);
         properties.put("javax.persistence.jdbc.user", user);
         properties.put("javax.persistence.jdbc.password", password);
-        em = Persistence.createEntityManagerFactory(mode,properties);
+        //em = Persistence.createEntityManagerFactory(mode,properties);
     }
-
 
     public static void close(){
         em.close();
