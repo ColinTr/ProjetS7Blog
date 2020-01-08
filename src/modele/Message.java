@@ -2,6 +2,7 @@ package modele;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.ArrayList;
 
 @Entity
 public class Message {
@@ -12,66 +13,18 @@ public class Message {
 
     private String titre;
     private String texte;
+
+    @ElementCollection
+    @CollectionTable(name="Images", joinColumns=@JoinColumn(name="idMessage"))
+    @Column(name="images")
     private List<String> images;
+
+    @ElementCollection
+    @CollectionTable(name="Liens", joinColumns=@JoinColumn(name="idMessage"))
+    @Column(name="liens")
     private List<String> liens;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Utilisateur utilisateur;
 
-    public Message(int idMessage, String titre, String texte, List<String> images, List<String> liens, Utilisateur utilisateur) {
-        this.idMessage = idMessage;
-        this.titre = titre;
-        this.texte = texte;
-        this.images = images;
-        this.liens = liens;
-        this.utilisateur = utilisateur;
-    }
-
-    public int getIdMessage() {
-        return idMessage;
-    }
-
-    public void setIdMessage(int idMessage) {
-        this.idMessage = idMessage;
-    }
-
-    public String getTitre() {
-        return titre;
-    }
-
-    public void setTitre(String titre) {
-        this.titre = titre;
-    }
-
-    public String getTexte() {
-        return texte;
-    }
-
-    public void setTexte(String texte) {
-        this.texte = texte;
-    }
-
-    public List<String> getImages() {
-        return images;
-    }
-
-    public void setImages(List<String> images) {
-        this.images = images;
-    }
-
-    public List<String> getLiens() {
-        return liens;
-    }
-
-    public void setLiens(List<String> liens) {
-        this.liens = liens;
-    }
-
-    public Utilisateur getUtilisateur() {
-        return utilisateur;
-    }
-
-    public void setUtilisateur(Utilisateur utilisateur) {
-        this.utilisateur = utilisateur;
-    }
 }
