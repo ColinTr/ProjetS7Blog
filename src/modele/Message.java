@@ -1,6 +1,8 @@
 package modele;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -28,4 +30,84 @@ public class Message {
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Utilisateur utilisateur;
 
+    public Message(){
+        images = new ArrayList<Image>();
+        liens = new ArrayList<Lien>();
+        motCles = new ArrayList<MotCle>();
+    }
+
+    public Message(String titre, String texte, java.util.Date date){
+        this.titre = titre;
+        this.texte = texte;
+        this.date = date;
+        images = new ArrayList<Image>();
+        liens = new ArrayList<Lien>();
+        motCles = new ArrayList<MotCle>();
+    }
+
+    //Accesseurs
+    public String getTitre() {
+        return titre;
+    }
+
+    public void setTitre(String titre) {
+        this.titre = titre;
+    }
+
+    public String getTexte() {
+        return texte;
+    }
+
+    public void setTexte(String texte) {
+        this.texte = texte;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public Utilisateur getUtilisateur() {
+        return utilisateur;
+    }
+
+    public void setUtilisateur(Utilisateur utilisateur) {
+        this.utilisateur = utilisateur;
+    }
+
+    //Image
+    public List<Image> getImages(){
+        return images;
+    }
+    public void addImage(Image image){
+        images.add(image);
+    }
+    public void removeImage(Image image){
+        images.remove(image);
+    }
+
+    //Lien
+    public List<Lien> getLiens(){
+        return liens;
+    }
+    public void addLien(Lien lien){
+        liens.add(lien);
+    }
+    public void removeLien(Lien lien){
+        liens.remove(lien);
+    }
+
+    //Mot Cle
+    public List<MotCle> getMotCles(){
+        return motCles;
+    }
+    public void addMotCle(MotCle motCle){
+        motCles.add(motCle);
+    }
+    public void removeMotCle(MotCle motCle){
+        motCles.remove(motCle);
+    }
 }
