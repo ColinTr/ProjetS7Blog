@@ -1,14 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="vue.ObsFenetreDeConnexion"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane fx:id="anchor" prefHeight="400.0" prefWidth="600.0" stylesheets="@styleFenetre.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vue.ObsFenetreDeConnexion">
+   <children>
+      <JFXTextField focusColor="WHITE" layoutX="242.0" layoutY="161.0" promptText="Nom de compte" unFocusColor="WHITE" />
+      <ImageView fitHeight="25.0" fitWidth="33.0" layoutX="215.0" layoutY="161.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@user_icon%20-%20original.png" />
+         </image>
+      </ImageView>
+      <JFXPasswordField focusColor="WHITE" layoutX="242.0" layoutY="211.0" promptText="Mot de passe" unFocusColor="WHITE" />
+      <ImageView fitHeight="25.0" fitWidth="33.0" layoutX="214.0" layoutY="211.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@lock_icon.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="183.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Logo_Polytech_Tours.png" />
+         </image>
+      </ImageView>
+      <JFXButton layoutX="262.0" layoutY="260.0" style="-fx-background-color: #326496;" text="Connection" textFill="WHITE" textOverrun="CLIP" />
+   </children>
 </AnchorPane>
