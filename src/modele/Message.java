@@ -2,7 +2,6 @@ package modele;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.ArrayList;
 
 @Entity
 public class Message {
@@ -14,15 +13,17 @@ public class Message {
     private String titre;
     private String texte;
 
-    @ElementCollection
-    @CollectionTable(name="Images", joinColumns=@JoinColumn(name="idMessage"))
-    @Column(name="images")
-    private List<String> images;
+    @Temporal(TemporalType.TIMESTAMP)
+    private java.util.Date date;
 
-    @ElementCollection
-    @CollectionTable(name="Liens", joinColumns=@JoinColumn(name="idMessage"))
-    @Column(name="liens")
-    private List<String> liens;
+    @ManyToMany(mappedBy = "messages", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Image> images;
+
+    @ManyToMany(mappedBy = "messages", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Lien> liens;
+
+    @ManyToMany(mappedBy = "messages", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<MotCle> motCles;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Utilisateur utilisateur;
