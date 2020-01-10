@@ -21,7 +21,7 @@ public class FenetreDeConnexion extends Application {
         Pane root = loader.load();
         primaryStage.getIcons().add(new Image(FenetreDeConnexion.class.getResourceAsStream( "/resources/icon.png" )));
         primaryStage.setTitle("Polyblog");
-        primaryStage.setScene(new Scene(root, 410, 315));
+        primaryStage.setScene(new Scene(root, 654, 358));
 
         ObsFenetreDeConnexion c = loader.getController();
 

@@ -1,5 +1,6 @@
 import controleur.Connexion;
-import modele.MotCle;
+import controleur.UtilisateurDAO;
+import modele.Utilisateur;
 
 public class Main {
     public static void main( String[] args ) {
@@ -7,9 +8,9 @@ public class Main {
 
         Connexion.beginTransaction();
 
-        MotCle motCle = new MotCle("test");
+        Utilisateur azer = new Utilisateur("Nom", "Prenom", "10 rue des peupliers", "monAdresseMail@mail.com", UtilisateurDAO.SHA512("azer"));
 
-        Connexion.getEntityManager().persist(motCle);
+        Connexion.getEntityManager().persist(azer);
 
         Connexion.commitTransaction();
 
