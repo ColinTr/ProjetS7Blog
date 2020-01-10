@@ -1,5 +1,5 @@
 import controleur.Connexion;
-import modele.Message;
+import modele.MotCle;
 
 public class Main {
     public static void main( String[] args ) {
@@ -7,9 +7,11 @@ public class Main {
 
         Connexion.beginTransaction();
 
-        Message message = new Message();
+        MotCle motCle = new MotCle("test");
 
-        Connexion.getEntityManager().persist(message);
+        MotCle motCle1 = new MotCle("test");
+
+        Connexion.getEntityManager().persist(motCle);
 
         Connexion.commitTransaction();
 

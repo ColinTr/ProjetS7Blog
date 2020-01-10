@@ -16,4 +16,8 @@ public class MotCle {
             inverseJoinColumns={@JoinColumn(name="MESSAGES_ID",
                     referencedColumnName="idMessage")})
     private List<Message> messages;
+
+    public MotCle(String motCle){
+        this.motCle = motCle;
+    }
 }
