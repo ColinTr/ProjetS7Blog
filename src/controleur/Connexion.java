@@ -1,4 +1,4 @@
-package java.controleur;
+package controleur;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -38,5 +38,17 @@ public abstract class Connexion {
     }
 
     public static EntityManager getEntityManager() { return em; }
+
+    public static void beginTransaction(){
+        em.getTransaction().begin();
+    }
+
+    public static void commitTransaction(){
+        em.getTransaction().commit();
+    }
+
+    public static void rollbackTransaction(){
+        em.getTransaction().rollback();
+    }
 
 }
