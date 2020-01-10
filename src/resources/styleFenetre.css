@@ -1,7 +1,13 @@
 #anchor{
-	
-	-fx-background-color : linear-gradient(to right bottom, #18B5D9, #049DD9);
-	
+	-fx-background-color : linear-gradient(to right bottom, #029690, #592C85);
+}
+
+#paneListeMessages{
+    -fx-background-color : linear-gradient(to right bottom, #FFFFFF, #7395AE);
+}
+
+#paneMessage{
+    -fx-background-color : linear-gradient(to right bottom, #18B5D9, #049DD9);
 }
 
 .button{
@@ -13,6 +19,10 @@
     -fx-text-fill: #FFFFFF;
 }
 
-.button:pressed {
+#boutonOptions:pressed{
     -fx-background-color: #EEE9E0;
+}
+
+#boutonConnection{
+    -fx-font-size: 14; /* 12 */
 }

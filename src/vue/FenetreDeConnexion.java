@@ -20,11 +20,16 @@ public class FenetreDeConnexion extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fenetreConnexion.fxml"));
         Pane root = loader.load();
         primaryStage.getIcons().add(new Image(FenetreDeConnexion.class.getResourceAsStream( "/resources/icon.png" )));
-        primaryStage.setTitle("Polyblog");
-        primaryStage.setScene(new Scene(root, 654, 358));
-
-        ObsFenetreDeConnexion c = loader.getController();
+        primaryStage.setTitle("Polyblogger");
+        primaryStage.setScene(new Scene(root, 550, 358));
 
         primaryStage.show();
     }
+
+    @Override
+    public void stop(){
+        System.out.println("Stage is closing");
+        // Save file
+    }
+
 }
