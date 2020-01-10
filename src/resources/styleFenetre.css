@@ -3,3 +3,16 @@
 	-fx-background-color : linear-gradient(to right bottom, #18B5D9, #049DD9);
 	
 }
+
+.button{
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-color: transparent;
+    -fx-font-family:"Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-size: 1em; /* 12 */
+    -fx-text-fill: #FFFFFF;
+}
+
+.button:pressed {
+    -fx-background-color: #EEE9E0;
+}
