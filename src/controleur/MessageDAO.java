@@ -23,14 +23,17 @@ public class MessageDAO {
     }
 
     public static List<Message> recupererTousLesMessages(){
+        //TODO
         return null;
     }
 
     public static List<Message> recupererMessagesAUneDateDonnee(java.util.Date date){
+        //TODO
         return null;
     }
 
     public static List<Message> recupererMessagesAvecMotsCles(List<MotCle> motCles){
+        //TODO
         return null;
     }
 
