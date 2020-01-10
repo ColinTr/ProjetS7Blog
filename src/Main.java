@@ -9,8 +9,6 @@ public class Main {
 
         MotCle motCle = new MotCle("test");
 
-        MotCle motCle1 = new MotCle("test");
-
         Connexion.getEntityManager().persist(motCle);
 
         Connexion.commitTransaction();

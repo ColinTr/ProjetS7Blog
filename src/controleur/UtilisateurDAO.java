@@ -1,6 +1,5 @@
 package controleur;
 
-import modele.Message;
 import modele.Utilisateur;
 
 import javax.persistence.Query;
@@ -10,7 +9,7 @@ import java.util.List;
 public class UtilisateurDAO {
 
     public static List<Utilisateur> getAllUtilisateur(){
-        List<Utilisateur> listeARetourner = new ArrayList<Utilisateur>();
+        List<Utilisateur> listeARetourner = new ArrayList<>();
 
         Query query = Connexion.getEntityManager().createQuery("SELECT u FROM Utilisateur u");
         List results = query.getResultList();

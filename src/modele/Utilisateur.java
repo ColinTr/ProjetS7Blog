@@ -21,7 +21,7 @@ public class Utilisateur {
     private List<Message> messages;
 
     public Utilisateur() {
-        messages = new ArrayList<Message>();
+        messages = new ArrayList<>();
     }
 
     public Utilisateur(String nom, String prenom, String adresse, String mail, String motDePasse) {
@@ -30,10 +30,8 @@ public class Utilisateur {
         this.adresse = adresse;
         this.mail = mail;
         this.motDePasse = motDePasse;
-        messages = new ArrayList<Message>();
+        messages = new ArrayList<>();
     }
-
-
 
     public Message getMessage(int i){
         return messages.get(i);

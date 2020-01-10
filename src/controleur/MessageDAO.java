@@ -6,15 +6,13 @@ import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.List;
 
-import modele.Message;
 import modele.MotCle;
 
-import java.util.List;
 
 public class MessageDAO {
 
     public static List<Message> getAllMessages(){
-        List<Message> listeARetourner = new ArrayList<Message>();
+        List<Message> listeARetourner = new ArrayList<>();
 
         Query query = Connexion.getEntityManager().createQuery("SELECT m FROM Message m");
         List results = query.getResultList();

@@ -31,18 +31,18 @@ public class Message {
     private Utilisateur utilisateur;
 
     public Message(){
-        images = new ArrayList<Image>();
-        liens = new ArrayList<Lien>();
-        motCles = new ArrayList<MotCle>();
+        images = new ArrayList<>();
+        liens = new ArrayList<>();
+        motCles = new ArrayList<>();
     }
 
     public Message(String titre, String texte, java.util.Date date){
         this.titre = titre;
         this.texte = texte;
         this.date = date;
-        images = new ArrayList<Image>();
-        liens = new ArrayList<Lien>();
-        motCles = new ArrayList<MotCle>();
+        images = new ArrayList<>();
+        liens = new ArrayList<>();
+        motCles = new ArrayList<>();
     }
 
     //Accesseurs
