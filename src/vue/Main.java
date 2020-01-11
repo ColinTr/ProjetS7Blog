@@ -15,7 +15,7 @@ public class Main {
 
         Connexion.beginTransaction();
 
-        Utilisateur azer = new Utilisateur("Nom", "Prenom", "10 rue olivier debré", "azer", UtilisateurDAO.SHA512("azer"));
+        Utilisateur azer = new Utilisateur("NomAZER", "PrenomAZER", "10 rue olivier debré", "azer", UtilisateurDAO.SHA512("azer"));
         Utilisateur colin = new Utilisateur("Troisemaine", "Colin", "10 rue des peupliers", "colin.troisemaine@etu.univ-tours.fr", UtilisateurDAO.SHA512("password"));
         Utilisateur guillaume = new Utilisateur("Bouchard", "Guillaume", "64 Avenue Jean Portalis", "guillaume.bouchard@etu.univ-tours.fr", UtilisateurDAO.SHA512("password"));
 

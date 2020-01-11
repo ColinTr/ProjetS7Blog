@@ -2,12 +2,12 @@
 	-fx-background-color : linear-gradient(to right bottom, #029690, #592C85);
 }
 
-#paneListeMessages{
-    -fx-background-color : linear-gradient(to right bottom, #FFFFFF, #7395AE);
+#vboxPrincipale{
+	-fx-background-color : linear-gradient(to right bottom, #029690, #592C85);
 }
 
-#paneMessage{
-    -fx-background-color : linear-gradient(to right bottom, #18B5D9, #049DD9);
+#topBar{
+    -fx-background-color : #F2A005;
 }
 
 .button{

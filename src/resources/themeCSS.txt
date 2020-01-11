@@ -1,6 +1,0 @@
-/* Color Theme Swatches in Hex */
-@Robot-1-hex: #002F53;
-@Robot-2-hex: #2D999F;
-@Robot-3-hex: #EEE9E0;
-@Robot-4-hex: #D8D8C2;
-@Robot-5-hex: #F25D50;
