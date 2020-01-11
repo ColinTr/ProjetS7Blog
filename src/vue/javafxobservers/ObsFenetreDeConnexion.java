@@ -74,19 +74,7 @@ public class ObsFenetreDeConnexion implements Initializable {
                 if(utilisateur != null){
 
                     //On ouvre la fenetre principale :
-                    Parent root;
-                    try {
-                        FXMLLoader loader = new FXMLLoader(ObsFenetreDeConnexion.class.getResource("/resources/fenetrePrincipale.fxml"));
-                        root = loader.load();
-                        Stage stage = new Stage();
-                        stage.getIcons().add(new Image(FenetreDeConnexion.class.getResourceAsStream("/resources/images/icon.png")));
-                        stage.setTitle("Polyblogger");
-                        stage.setScene(new Scene(root, 1080, 720));
-                        stage.show();
-                    }
-                    catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    creerFenetre("/resources/fenetrePrincipale.fxml", "/resources/images/icon.png", "Polyblogger");
                     ((Stage) boutonConnection.getScene().getWindow()).close();
                 }
                 else{
@@ -98,8 +86,28 @@ public class ObsFenetreDeConnexion implements Initializable {
             }
         });
 
+        boutonInscription.setOnAction(event -> {
+            creerFenetre("/resources/fenetreInscription.fxml", "/resources/images/icon.png", "Créer un compte");
+        });
+
         boutonOptions.setOnAction(event -> {
             //TODO Lancer la fenêtre des options
         });
+    }
+
+    private void creerFenetre(String fxml, String icon, String titre){
+        Parent root;
+        try {
+            FXMLLoader loader = new FXMLLoader(ObsFenetreDeConnexion.class.getResource(fxml));
+            root = loader.load();
+            Stage stage = new Stage();
+            stage.getIcons().add(new Image(FenetreDeConnexion.class.getResourceAsStream(icon)));
+            stage.setTitle(titre);
+            stage.setScene(new Scene(root));
+            stage.show();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
