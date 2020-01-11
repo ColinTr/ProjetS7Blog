@@ -24,6 +24,10 @@ public class UtilisateurDAO {
         return listeARetourner;
     }
 
+    public static Utilisateur getUtilisateur(String mail){
+        return Connexion.getEntityManager().find(Utilisateur.class, mail);
+    }
+
     public static void ajouterUtilisateur(Utilisateur utilisateur){
         if (!Connexion.getEntityManager().contains(utilisateur)){
             Connexion.beginTransaction();

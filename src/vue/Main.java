@@ -1,6 +1,7 @@
 package vue;
 
 import controleur.Connexion;
+import controleur.ManipulationUtilisateur;
 import controleur.UtilisateurDAO;
 import modele.Utilisateur;
 
@@ -22,6 +23,15 @@ public class Main {
         Connexion.getEntityManager().persist(guillaume);
 
         Connexion.commitTransaction();
+
+
+        if (ManipulationUtilisateur.inscription("","","","aze","1234")){
+            System.out.println("Test1 ok");
+        }
+
+        if (!ManipulationUtilisateur.inscription("","","","azer","1234")){
+            System.out.println("Test2 ok");
+        }
 
         Connexion.close();
     }
