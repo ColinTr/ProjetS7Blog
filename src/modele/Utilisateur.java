@@ -8,13 +8,11 @@ import java.util.List;
 public class Utilisateur {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int idUtilisateur;
+    private String adresseMail;
 
     private String nom;
     private String prenom;
     private String adresse;
-    private String mail;
     private String motDePasse;
 
     @OneToMany(mappedBy = "utilisateur", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -28,13 +26,9 @@ public class Utilisateur {
         this.nom = nom;
         this.prenom = prenom;
         this.adresse = adresse;
-        this.mail = mail;
+        this.adresseMail = mail;
         this.motDePasse = motDePasse;
         messages = new ArrayList<>();
-    }
-
-    public Message getMessage(int i){
-        return messages.get(i);
     }
 
     public void addMessage(Message m){
@@ -45,8 +39,24 @@ public class Utilisateur {
         messages.remove(m);
     }
 
+
+    //========================== Getters ==========================
+
     public List<Message> getMessages(){
         return messages;
     }
 
+    public Message getMessage(int i){
+        return messages.get(i);
+    }
+
+    public String getNom() { return nom; }
+
+    public String getPrenom() { return prenom; }
+
+    public String getAdresse() { return adresse; }
+
+    public String getAdresseMail() { return adresseMail; }
+
+    public String getMotDePasse() { return motDePasse; }
 }

@@ -1,11 +1,10 @@
-package vue;
+package vue.javafxobservers;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import controleur.Connexion;
 import controleur.UtilisateurDAO;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -15,8 +14,10 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import modele.Utilisateur;
+import vue.FenetreDeConnexion;
 
 import java.io.IOException;
 import java.net.URL;
@@ -24,12 +25,17 @@ import java.util.ResourceBundle;
 
 public class ObsFenetreDeConnexion implements Initializable {
 
+    @FXML JFXButton boutonInscription;
+    @FXML JFXButton boutonConnection;
+    @FXML Button boutonOptions;
+    @FXML Button boutonEye;
+
+    @FXML ImageView imageEye;
+
     @FXML JFXTextField fieldNomDeCompte;
     @FXML JFXPasswordField fieldMotDePasse;
-    @FXML Button boutonOptions;
-    @FXML JFXButton boutonConnection;
-    @FXML Button boutonEye;
-    @FXML ImageView imageEye;
+
+    @FXML Text errorText;
 
     boolean motDePasseCache = true;
 
@@ -37,8 +43,8 @@ public class ObsFenetreDeConnexion implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Connexion.init("classique");
 
-        Image openEye = new Image(FenetreDeConnexion.class.getResourceAsStream( "/resources/SMALL_eye-opened.png" ));
-        Image openClose = new Image(FenetreDeConnexion.class.getResourceAsStream( "/resources/SMALL_eye-closed.png" ));
+        Image openEye = new Image(FenetreDeConnexion.class.getResourceAsStream("/resources/images/SMALL_eye-opened.png"));
+        Image closedEye = new Image(FenetreDeConnexion.class.getResourceAsStream("/resources/images/SMALL_eye-closed.png"));
 
         boutonEye.addEventHandler(MouseEvent.MOUSE_PRESSED, e -> {
             imageEye.setImage(openEye);
@@ -50,7 +56,7 @@ public class ObsFenetreDeConnexion implements Initializable {
         });
 
         boutonEye.addEventHandler(MouseEvent.MOUSE_RELEASED, e -> {
-            imageEye.setImage(openClose);
+            imageEye.setImage(closedEye);
             if(!motDePasseCache){
                 fieldMotDePasse.setText(fieldMotDePasse.getPromptText());
                 fieldMotDePasse.setPromptText("Mot de passe");
@@ -73,7 +79,7 @@ public class ObsFenetreDeConnexion implements Initializable {
                         FXMLLoader loader = new FXMLLoader(ObsFenetreDeConnexion.class.getResource("/resources/fenetrePrincipale.fxml"));
                         root = loader.load();
                         Stage stage = new Stage();
-                        stage.getIcons().add(new Image(FenetreDeConnexion.class.getResourceAsStream( "/resources/icon.png" )));
+                        stage.getIcons().add(new Image(FenetreDeConnexion.class.getResourceAsStream("/resources/images/icon.png")));
                         stage.setTitle("Polyblogger");
                         stage.setScene(new Scene(root, 1080, 720));
                         stage.show();
@@ -84,8 +90,11 @@ public class ObsFenetreDeConnexion implements Initializable {
                     ((Stage) boutonConnection.getScene().getWindow()).close();
                 }
                 else{
-                    //TODO message d'erreur OU popup indiquant que l'utilisateur n'existe pas
+                    errorText.setText("Login ou mot de passe incorrect");
                 }
+            }
+            else{
+                errorText.setText("Remplissez tous les champs");
             }
         });
 

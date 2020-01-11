@@ -9,46 +9,34 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="anchor" prefHeight="358.0" prefWidth="550.0" stylesheets="@styleFenetre.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vue.ObsFenetreDeConnexion">
-   <children>
-      <Button fx:id="boutonOptions" layoutX="14.0" layoutY="14.0" mnemonicParsing="false">
-         <graphic>
-            <ImageView fitHeight="32.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@settings.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
-      <JFXTextField fx:id="fieldNomDeCompte" focusColor="#f2a005" layoutX="224.0" layoutY="138.0" promptText="Adresse mail" style="-fx-text-inner-color: WHITE; -fx-prompt-text-fill: WHITE;" unFocusColor="WHITE" />
-      <ImageView fitHeight="25.0" fitWidth="33.0" layoutX="192.0" layoutY="138.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@SMALL_user_icon.png" />
-         </image>
-      </ImageView>
-      <JFXPasswordField fx:id="fieldMotDePasse" focusColor="#f2a005" layoutX="224.0" layoutY="179.0" promptText="Mot de passe" style="-fx-text-inner-color: WHITE; -fx-prompt-text-fill: WHITE;" unFocusColor="WHITE" />
-      <ImageView fitHeight="25.0" fitWidth="33.0" layoutX="192.0" layoutY="179.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@SMALL_lock_icon.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="79.0" fitWidth="226.0" layoutX="164.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@%20YELLOW_SMALL_Logo_Polytech_Tours.png" />
-         </image>
-      </ImageView>
-      <JFXButton fx:id="boutonConnection" layoutX="235.0" layoutY="247.0" prefHeight="34.0" prefWidth="100.0" style="-fx-background-color: #F2A005;" text="Connection" textAlignment="CENTER" textFill="WHITE" />
-      <JFXButton fx:id="boutonInscription" layoutX="459.0" layoutY="312.0" style="-fx-background-color: #F2A005;" text="S'inscrire" textFill="WHITE" />
-      <Text fill="WHITE" layoutX="359.0" layoutY="328.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pas de compte ?" />
-      <Text fx:id="errorText" layoutX="224.0" layoutY="233.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-      <Button fx:id="boutonEye" layoutX="359.0" layoutY="175.0" mnemonicParsing="false">
-         <graphic>
-            <ImageView fx:id="imageEye" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@SMALL_eye-closed.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
-   </children>
+<AnchorPane fx:id="anchor" prefHeight="358.0" prefWidth="550.0" stylesheets="@styleFenetre.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vue.javafxobservers.ObsFenetreDeConnexion">
+   <Button fx:id="boutonOptions" layoutX="14.0" layoutY="14.0" mnemonicParsing="false">
+      <graphic>
+         <ImageView fitHeight="32.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+            <Image url="@images/settings.png"/>
+         </ImageView>
+      </graphic>
+   </Button>
+   <JFXTextField fx:id="fieldNomDeCompte" focusColor="#f2a005" layoutX="224.0" layoutY="138.0" promptText="Adresse mail" style="-fx-text-inner-color: WHITE; -fx-prompt-text-fill: WHITE;" unFocusColor="WHITE"/>
+   <ImageView fitHeight="25.0" fitWidth="33.0" layoutX="192.0" layoutY="138.0" pickOnBounds="true" preserveRatio="true">
+      <Image url="@images/SMALL_user_icon.png"/>
+   </ImageView>
+   <JFXPasswordField fx:id="fieldMotDePasse" focusColor="#f2a005" layoutX="224.0" layoutY="179.0" promptText="Mot de passe" style="-fx-text-inner-color: WHITE; -fx-prompt-text-fill: WHITE;" unFocusColor="WHITE"/>
+   <ImageView fitHeight="25.0" fitWidth="33.0" layoutX="192.0" layoutY="179.0" pickOnBounds="true" preserveRatio="true">
+      <Image url="@images/SMALL_lock_icon.png"/>
+   </ImageView>
+   <ImageView fitHeight="79.0" fitWidth="226.0" layoutX="164.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+      <Image url="@images/YELLOW_Logo_Polytech_Tours.png"/>
+   </ImageView>
+   <JFXButton fx:id="boutonConnection" layoutX="235.0" layoutY="247.0" prefHeight="34.0" prefWidth="100.0" style="-fx-background-color: #F2A005;" text="Connection" textAlignment="CENTER" textFill="WHITE"/>
+   <JFXButton fx:id="boutonInscription" layoutX="459.0" layoutY="312.0" style="-fx-background-color: #F2A005;" text="S'inscrire" textFill="WHITE"/>
+   <Text fill="WHITE" layoutX="359.0" layoutY="328.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pas de compte ?"/>
+   <Text fx:id="errorText" fill="WHITE" layoutX="224.0" layoutY="233.0" strokeType="OUTSIDE" strokeWidth="0.0"/>
+   <Button fx:id="boutonEye" layoutX="359.0" layoutY="175.0" mnemonicParsing="false">
+      <graphic>
+         <ImageView fx:id="imageEye" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+            <Image url="@images/SMALL_eye-closed.png"/>
+         </ImageView>
+      </graphic>
+   </Button>
 </AnchorPane>
