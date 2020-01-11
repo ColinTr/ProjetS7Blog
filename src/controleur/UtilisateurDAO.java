@@ -63,7 +63,7 @@ public class UtilisateurDAO {
     public static Utilisateur testerAuthentification(String adresseMail, String mdPasse){
         Utilisateur utilisateur = null;
 
-        Query query = Connexion.getEntityManager().createQuery("SELECT u FROM Utilisateur u WHERE u.motDePasse = '" + SHA512(mdPasse) + "' AND u.mail = '" + adresseMail + "'");
+        Query query = Connexion.getEntityManager().createQuery("SELECT u FROM Utilisateur u WHERE u.motDePasse = '" + SHA512(mdPasse) + "' AND u.adresseMail = '" + adresseMail + "'");
 
         List results = query.getResultList();
 
