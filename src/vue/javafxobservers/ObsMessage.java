@@ -1,6 +1,7 @@
 package vue.javafxobservers;
 
 import com.jfoenix.controls.JFXButton;
+import controleur.MessageDAO;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Hyperlink;
@@ -11,6 +12,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
+import modele.Message;
 
 import java.net.URL;
 import java.util.List;
@@ -24,6 +26,8 @@ public class ObsMessage implements Initializable {
     private List<Image> images;
     private int indexImage;
     @FXML private ImageView image;
+    private ObsFenetrePrincipale obsFenetrePrincipale;
+    private Message messageAffiche;
 
     @FXML private BorderPane borderPaneMessage;
     @FXML private Text texteNom;
@@ -43,7 +47,8 @@ public class ObsMessage implements Initializable {
         });
 
         linkSupprimer.setOnAction(event -> {
-            System.out.println("supprimer " + texteTitre);
+            MessageDAO.supprimerMessage(messageAffiche);
+            obsFenetrePrincipale.rafraichirMessages();
         });
 
         boutonImageSuivante.setOnAction(event -> {
@@ -88,4 +93,8 @@ public class ObsMessage implements Initializable {
             image.setCache(true);
         }
     }
+
+    public void setObsFenetrePrincipale(ObsFenetrePrincipale obsFenetrePrincipale) { this.obsFenetrePrincipale = obsFenetrePrincipale; }
+
+    public void setMessageAffiche(Message messageAffiche) { this.messageAffiche = messageAffiche; }
 }

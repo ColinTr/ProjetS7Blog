@@ -41,6 +41,7 @@ public class MessageDAO {
         if (Connexion.getEntityManager().contains(message)){
             Connexion.beginTransaction();
             try{
+                message.setUtilisateur(null);
                 Connexion.getEntityManager().remove(message);
                 Connexion.commitTransaction();
             } catch (Exception e){
@@ -53,11 +54,6 @@ public class MessageDAO {
     public static boolean modifierMessage(){
         //TODO
         return true;
-    }
-
-    public static List<Message> recupererTousLesMessages(){
-        //TODO
-        return null;
     }
 
     public static List<Message> recupererMessagesAUneDateDonnee(java.util.Date date){

@@ -18,6 +18,10 @@ public class MotCle {
                     referencedColumnName="idMessage")})
     private List<Message> messages;
 
+    public MotCle() {
+        messages = new ArrayList<Message>();
+    }
+
     public MotCle(String motCle) {
         this.motCle = motCle;
         messages = new ArrayList<Message>();

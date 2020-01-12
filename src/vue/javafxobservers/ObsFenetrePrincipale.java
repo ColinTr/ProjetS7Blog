@@ -97,6 +97,9 @@ public class ObsFenetrePrincipale implements Initializable {
                 root = loader.load();
                 ObsMessage obsMessage = loader.getController();
 
+                obsMessage.setObsFenetrePrincipale(this);
+                obsMessage.setMessageAffiche(m);
+
                 List<javafx.scene.image.Image> listeImages = new ArrayList<>();
                 for(modele.Image img : m.getImages()){
                     listeImages.add(new javafx.scene.image.Image(img.getAdresseImage()));
