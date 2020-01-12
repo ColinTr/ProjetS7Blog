@@ -14,10 +14,21 @@ public class Lien {
     @ManyToOne(fetch = FetchType.LAZY) //On ne met pas CascadeType.ALL car lorsqu'on supprime un lien on ne veut pas supprimer son message
     private Message message;
 
+    public Lien() {
+    }
+
     public Lien(String adresseLien, String texteLien) {
         this.adresseLien = adresseLien;
         this.texteLien = texteLien;
     }
 
     public void setMessage(Message message){ this.message = message; }
+
+    public String getAdresseLien() {
+        return adresseLien;
+    }
+
+    public String getTexteLien() {
+        return texteLien;
+    }
 }

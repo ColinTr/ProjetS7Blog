@@ -57,6 +57,8 @@ public class ObsFenetreCreerMessage  implements Initializable {
                 fieldTexteLien.setText(null);
                 fieldAdresseLien.setText(null);
             }
+
+            event.consume();
         });
 
         boutonAjouterImage.setOnAction(event -> {
@@ -64,6 +66,8 @@ public class ObsFenetreCreerMessage  implements Initializable {
                 imagesObservableList.add(fieldAdresseImage.getText());
                 fieldAdresseImage.setText(null);
             }
+
+            event.consume();
         });
 
         boutonPoster.setOnAction(event -> {
@@ -87,12 +91,14 @@ public class ObsFenetreCreerMessage  implements Initializable {
 
             Stage stage = (Stage) boutonAnnuler.getScene().getWindow();
             stage.close();
+
             event.consume();
         });
 
         boutonAnnuler.setOnAction(event -> {
             Stage stage = (Stage) boutonAnnuler.getScene().getWindow();
             stage.close();
+
             event.consume();
         });
     }

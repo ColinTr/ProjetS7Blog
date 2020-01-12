@@ -53,6 +53,7 @@ public class ObsFenetreDeConnexion implements Initializable {
                 fieldMotDePasse.setText(null);
                 motDePasseCache = false;
             }
+            e.consume();
         });
 
         boutonEye.addEventHandler(MouseEvent.MOUSE_RELEASED, e -> {
@@ -62,6 +63,7 @@ public class ObsFenetreDeConnexion implements Initializable {
                 fieldMotDePasse.setPromptText("Mot de passe");
                 motDePasseCache = true;
             }
+            e.consume();
         });
 
         boutonConnection.setOnAction(event -> {
@@ -76,6 +78,7 @@ public class ObsFenetreDeConnexion implements Initializable {
                     //On ouvre la fenetre principale :
                     ObsFenetrePrincipale.setUtilisateurConnecte(utilisateur);
                     creerFenetre("/resources/fenetrePrincipale.fxml", "/resources/images/icon.png", "Polyblogger");
+                    event.consume();
                     ((Stage) boutonConnection.getScene().getWindow()).close();
                 }
                 else{
@@ -85,14 +88,17 @@ public class ObsFenetreDeConnexion implements Initializable {
             else{
                 errorText.setText("Remplissez tous les champs");
             }
+            event.consume();
         });
 
         boutonInscription.setOnAction(event -> {
             creerFenetre("/resources/fenetreInscription.fxml", "/resources/images/icon.png", "Créer un compte");
+            event.consume();
         });
 
         boutonOptions.setOnAction(event -> {
             //TODO Lancer la fenêtre des options
+            event.consume();
         });
     }
 

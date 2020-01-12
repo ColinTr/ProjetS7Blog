@@ -2,6 +2,7 @@ package vue;
 
 import controleur.Connexion;
 import controleur.UtilisateurDAO;
+import modele.Lien;
 import modele.Message;
 import modele.MotCle;
 import modele.Utilisateur;
@@ -36,6 +37,18 @@ public class Main {
         MotCle motCle2 = new MotCle("motCle2");
         MotCle motCle3 = new MotCle("motCle3");
 
+        Lien lien1 = new Lien("www.google.com", "google");
+        Lien lien2 = new Lien("www.youtube.com", "youtube");
+        Lien lien3 = new Lien("https://celene.univ-tours.fr", "celene");
+
+        lien1.setMessage(m5);
+        lien2.setMessage(m5);
+        lien3.setMessage(m5);
+
+        m5.addLien(lien1);
+        m5.addLien(lien2);
+        m5.addLien(lien3);
+
         m1.addMotCle(motCle1);
         m1.addMotCle(motCle2);
         m2.addMotCle(motCle3);
@@ -44,12 +57,12 @@ public class Main {
         motCle2.ajouterMessage(m1);
         motCle3.ajouterMessage(m2);
 
-        img1.setMessage(m1);
-        img2.setMessage(m1);
+        img1.setMessage(m5);
+        img2.setMessage(m5);
         img3.setMessage(m1);
 
-        m1.addImage(img1);
-        m1.addImage(img2);
+        m5.addImage(img1);
+        m5.addImage(img2);
         m1.addImage(img3);
 
         m1.setUtilisateur(azer);

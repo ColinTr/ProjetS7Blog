@@ -38,14 +38,20 @@ public class ObsFenetrePrincipale implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        textNomUtilisateur.setText(utilisateurConnecte.getPrenom() + " " + utilisateurConnecte.getNom());
+
         boutonSupprimerFiltres.setOnAction(event -> {
             datePicker.setValue(null);
             fieldMotsCles.setText(null);
             rafraichirMessages();
+
+            event.consume();
         });
 
         boutonChercher.setOnAction(event -> {
             rafraichirMessages();
+
+            event.consume();
         });
 
         boutonPosterUnMessage.setOnAction(event -> {
@@ -65,6 +71,8 @@ public class ObsFenetrePrincipale implements Initializable {
             catch (IOException e) {
                 e.printStackTrace();
             }
+
+            event.consume();
         });
 
         rafraichirMessages();
@@ -105,7 +113,7 @@ public class ObsFenetrePrincipale implements Initializable {
                     listeImages.add(new javafx.scene.image.Image(img.getAdresseImage()));
                 }
 
-                obsMessage.definirMessage(m.getUtilisateur().getPrenom() + " " + m.getUtilisateur().getNom(), m.getDate().toString(), m.getTitre(), m.getTexte(), listeImages);
+                obsMessage.definirMessage(m.getUtilisateur().getPrenom() + " " + m.getUtilisateur().getNom(), m.getDate().toString(), m.getTitre(), m.getTexte(), listeImages, m.getLiens());
 
                 if(!m.getUtilisateur().getAdresseMail().equals(utilisateurConnecte.getAdresseMail())) {
                     obsMessage.supprimerCommandes();
@@ -113,6 +121,10 @@ public class ObsFenetrePrincipale implements Initializable {
 
                 if(m.getImages().isEmpty()){
                     obsMessage.supprimerImages();
+                }
+
+                if(m.getLiens().isEmpty()){
+                    obsMessage.supprimerLiens();
                 }
 
             } catch(IOException e){
