@@ -7,15 +7,17 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
-import modele.Image;
+import javafx.stage.Stage;
 import modele.Message;
 import modele.Utilisateur;
+import vue.FenetreDeConnexion;
 
-import javax.swing.text.html.ImageView;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -50,7 +52,21 @@ public class ObsFenetrePrincipale implements Initializable {
         });
 
         boutonPosterUnMessage.setOnAction(event -> {
-            //TODO LANCER LA FENETRE DE CREATION D'UN MESSAGE
+            Parent root;
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fenetreCreerMessage.fxml"));
+                root = loader.load();
+                Stage stage = new Stage();
+                ObsFenetreCreerMessage obsCreerMessage = loader.getController();
+                obsCreerMessage.setUtilisateurConnecte(utilisateurConnecte);
+                stage.getIcons().add(new Image(FenetreDeConnexion.class.getResourceAsStream("/resources/images/icon.png")));
+                stage.setTitle("Poster un nouveau message");
+                stage.setScene(new Scene(root));
+                stage.show();
+            }
+            catch (IOException e) {
+                e.printStackTrace();
+            }
         });
 
         rafraichirMessages();
@@ -87,7 +103,6 @@ public class ObsFenetrePrincipale implements Initializable {
                 }
 
                 if(m.getImages().isEmpty()){
-                    System.out.println("empty !");
                     obsMessage.supprimerImages();
                 }
 

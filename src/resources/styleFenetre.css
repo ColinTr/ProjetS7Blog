@@ -18,6 +18,20 @@
     -fx-wrap-text : true;
 }
 
+#fieldTitre .input-line{
+    -fx-pref-height: 0px;
+}
+
+#fieldMotsCles .input-line{
+    -fx-pref-height: 0px;
+}
+
+#messageArea .input-line{
+    -fx-pref-height: 0px;
+}
+
+#tabPanePrincipal .tab-header-background { -fx-background-color: #F2F2F2; }
+
 .button{
     -fx-border-color: transparent;
     -fx-border-width: 0;
@@ -37,4 +51,8 @@
 
 #boutonCreerCompte{
     -fx-font-size: 14; /* 12 */
+}
+
+#boutonSupprimerDeListe{
+-fx-background-color: red;
 }

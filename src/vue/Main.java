@@ -1,9 +1,9 @@
 package vue;
 
 import controleur.Connexion;
-import controleur.ManipulationUtilisateur;
 import controleur.UtilisateurDAO;
 import modele.Message;
+import modele.MotCle;
 import modele.Utilisateur;
 
 /**
@@ -32,9 +32,21 @@ public class Main {
         modele.Image img2 = new modele.Image("https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/1200px-Octicons-mark-github.svg.png");
         modele.Image img3 = new modele.Image("https://upload.wikimedia.org/wikipedia/fr/f/fe/SceneBuilderLogo.png");
 
-        img1.setMessages(m1);
-        img2.setMessages(m1);
-        img3.setMessages(m1);
+        MotCle motCle1 = new MotCle("motCle1");
+        MotCle motCle2 = new MotCle("motCle2");
+        MotCle motCle3 = new MotCle("motCle3");
+
+        m1.addMotCle(motCle1);
+        m1.addMotCle(motCle2);
+        m2.addMotCle(motCle3);
+
+        motCle1.ajouterMessage(m1);
+        motCle2.ajouterMessage(m1);
+        motCle3.ajouterMessage(m2);
+
+        img1.setMessage(m1);
+        img2.setMessage(m1);
+        img3.setMessage(m1);
 
         m1.addImage(img1);
         m1.addImage(img2);
@@ -57,15 +69,6 @@ public class Main {
         Connexion.getEntityManager().persist(guillaume);
 
         Connexion.commitTransaction();
-
-
-        if (ManipulationUtilisateur.inscription("","","","aze","1234")){
-            System.out.println("Test1 ok");
-        }
-
-        if (!ManipulationUtilisateur.inscription("","","","azer","1234")){
-            System.out.println("Test2 ok");
-        }
 
         Connexion.close();
     }

@@ -21,7 +21,7 @@ public class Image {
         this.adresseImage = adresseImage;
     }
 
-    public void setMessages(Message msg) {
+    public void setMessage(Message msg) {
         message = msg;
     }
 

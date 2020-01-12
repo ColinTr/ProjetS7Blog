@@ -14,7 +14,7 @@ public class Message {
 
     private String titre;
 
-    @Column(columnDefinition="TEXT")
+    @Column(columnDefinition="TEXT") //De base, Hibernate map un String comme un Varchar(255). Pour pouvoir stocker un plus grand String on ajoute cette annotation.
     private String texte;
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -23,7 +23,7 @@ public class Message {
     @OneToMany(mappedBy = "message", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Image> images;
 
-    @ManyToMany(mappedBy = "messages", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "message", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Lien> liens;
 
     @ManyToMany(mappedBy = "messages", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

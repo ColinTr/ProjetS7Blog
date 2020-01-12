@@ -1,7 +1,6 @@
 package modele;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 public class Lien {
@@ -12,11 +11,13 @@ public class Lien {
     private String adresseLien;
     private String texteLien;
 
-    @ManyToMany
-    @JoinTable(name="LIEN_MESSAGE",
-            joinColumns={@JoinColumn(name="LIENS_ID",
-                    referencedColumnName="idLien")},
-            inverseJoinColumns={@JoinColumn(name="MESSAGES_ID",
-                    referencedColumnName="idMessage")})
-    private List<Message> messages;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Message message;
+
+    public Lien(String adresseLien, String texteLien) {
+        this.adresseLien = adresseLien;
+        this.texteLien = texteLien;
+    }
+
+    public void setMessage(Message message){ this.message = message; }
 }

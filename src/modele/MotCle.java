@@ -17,7 +17,9 @@ public class MotCle {
                     referencedColumnName="idMessage")})
     private List<Message> messages;
 
-    public MotCle(String motCle){
-        this.motCle = motCle;
-    }
+    public MotCle(String motCle) { this.motCle = motCle; }
+
+    public String getMotCle() { return motCle; }
+
+    public void ajouterMessage(Message message) { messages.add(message); }
 }
