@@ -13,6 +13,10 @@ public class Image {
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Message message;
 
+    public Image() {
+        adresseImage = "";
+    }
+
     public Image(String adresseImage) {
         this.adresseImage = adresseImage;
     }

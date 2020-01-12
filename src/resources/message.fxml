@@ -59,7 +59,7 @@
          </Label>
          <Label fx:id="texteMessage" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="900.0" text="Texte du corp du message ici..." wrapText="true" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
             <GridPane.margin>
-               <Insets left="5.0" right="5.0" top="5.0" />
+               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
             </GridPane.margin>
          </Label>
          <GridPane fx:id="gridPaneImages" GridPane.rowIndex="2">
@@ -71,7 +71,7 @@
             <rowConstraints>
                <RowConstraints maxHeight="-Infinity" valignment="CENTER" vgrow="SOMETIMES" />
             </rowConstraints>
-            <ImageView fx:id="image" fitHeight="150.0" fitWidth="266.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" />
+            <ImageView fx:id="image" fitHeight="100.0" fitWidth="178.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" />
             <JFXButton fx:id="boutonImagePrecedente" prefWidth="33.0" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
                <GridPane.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

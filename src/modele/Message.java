@@ -20,7 +20,7 @@ public class Message {
     @Temporal(TemporalType.TIMESTAMP)
     private java.util.Date date;
 
-    @OneToMany(mappedBy = "messages", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "message", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Image> images;
 
     @ManyToMany(mappedBy = "messages", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

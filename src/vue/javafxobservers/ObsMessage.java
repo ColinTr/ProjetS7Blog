@@ -51,15 +51,19 @@ public class ObsMessage implements Initializable {
             if(indexImage == images.size()){
                 indexImage = 0;
             }
-            image = new ImageView(images.get(indexImage));
+            Image img = images.get(indexImage);
+            image.setImage(img);
+            image.setCache(true);
         });
 
         boutonImagePrecedente.setOnAction(event -> {
             indexImage--;
-            if(indexImage == 0){
-                indexImage = images.size();
+            if(indexImage == -1){
+                indexImage = images.size() - 1;
             }
-            image = new ImageView(images.get(indexImage));
+            Image img = images.get(indexImage);
+            image.setImage(img);
+            image.setCache(true);
         });
     }
 
@@ -77,5 +81,11 @@ public class ObsMessage implements Initializable {
         texteTitre.setText(titre);
         texteMessage.setText(message);
         images = imgs;
+        //Si il y a au moins une image, on l'initialise à la première image :
+        if(!images.isEmpty()){
+            Image img = images.get(0);
+            image.setImage(img);
+            image.setCache(true);
+        }
     }
 }

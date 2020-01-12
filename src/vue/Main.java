@@ -32,6 +32,10 @@ public class Main {
         modele.Image img2 = new modele.Image("https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/1200px-Octicons-mark-github.svg.png");
         modele.Image img3 = new modele.Image("https://upload.wikimedia.org/wikipedia/fr/f/fe/SceneBuilderLogo.png");
 
+        img1.setMessages(m1);
+        img2.setMessages(m1);
+        img3.setMessages(m1);
+
         m1.addImage(img1);
         m1.addImage(img2);
         m1.addImage(img3);

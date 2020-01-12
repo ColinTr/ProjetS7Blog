@@ -15,6 +15,7 @@ import modele.Image;
 import modele.Message;
 import modele.Utilisateur;
 
+import javax.swing.text.html.ImageView;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -76,7 +77,7 @@ public class ObsFenetrePrincipale implements Initializable {
 
                 List<javafx.scene.image.Image> listeImages = new ArrayList<>();
                 for(modele.Image img : m.getImages()){
-                    listeImages.add(new javafx.scene.image.Image("path"));
+                    listeImages.add(new javafx.scene.image.Image(img.getAdresseImage()));
                 }
 
                 obsMessage.definirMessage(m.getUtilisateur().getPrenom() + " " + m.getUtilisateur().getNom(), m.getDate().toString(), m.getTitre(), m.getTexte(), listeImages);
