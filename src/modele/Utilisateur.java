@@ -15,7 +15,7 @@ public class Utilisateur {
     private String adresse;
     private String motDePasse;
 
-    @OneToMany(mappedBy = "utilisateur", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "utilisateur", cascade = CascadeType.ALL, fetch = FetchType.LAZY) //CascadeType.ALL car on veut supprimer tous les messages d'un utilisateur lorsqu'on le supprime
     private List<Message> messages;
 
     public Utilisateur() {

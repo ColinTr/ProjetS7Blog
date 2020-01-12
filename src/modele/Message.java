@@ -29,7 +29,7 @@ public class Message {
     @ManyToMany(mappedBy = "messages", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<MotCle> motCles;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY) //On ne met pas CascadeType.ALL car lorsqu'on supprime un message on ne veut pas supprimer son utilisateur
     private Utilisateur utilisateur;
 
     public Message(){

@@ -32,6 +32,7 @@ public class ObsFenetreCreerMessage  implements Initializable {
     private static ObservableList<String> imagesObservableList = FXCollections.observableArrayList();
 
     private static Utilisateur utilisateurConnecte;
+    private static ObsFenetrePrincipale obsFenetrePrincipale;
 
     @FXML private JFXButton boutonAjouterLien;
     @FXML private TextField fieldTexteLien;
@@ -56,6 +57,8 @@ public class ObsFenetreCreerMessage  implements Initializable {
                 fieldTexteLien.setText(null);
                 fieldAdresseLien.setText(null);
             }
+
+            event.consume();
         });
 
         boutonAjouterImage.setOnAction(event -> {
@@ -63,6 +66,8 @@ public class ObsFenetreCreerMessage  implements Initializable {
                 imagesObservableList.add(fieldAdresseImage.getText());
                 fieldAdresseImage.setText(null);
             }
+
+            event.consume();
         });
 
         boutonPoster.setOnAction(event -> {
@@ -81,11 +86,19 @@ public class ObsFenetreCreerMessage  implements Initializable {
             }
 
             ManipulationUtilisateur.posterMessage(utilisateurConnecte, titre, texte, motsCles, images, liens);
+
+            obsFenetrePrincipale.rafraichirMessages();
+
+            Stage stage = (Stage) boutonAnnuler.getScene().getWindow();
+            stage.close();
+
+            event.consume();
         });
 
         boutonAnnuler.setOnAction(event -> {
             Stage stage = (Stage) boutonAnnuler.getScene().getWindow();
             stage.close();
+
             event.consume();
         });
     }
@@ -154,4 +167,6 @@ public class ObsFenetreCreerMessage  implements Initializable {
     }
 
     public static void setUtilisateurConnecte(Utilisateur u){ utilisateurConnecte = u; }
+
+    public static void setObsFenetrePrincipale(ObsFenetrePrincipale obsFenetrePrincipale) { ObsFenetreCreerMessage.obsFenetrePrincipale = obsFenetrePrincipale; }
 }

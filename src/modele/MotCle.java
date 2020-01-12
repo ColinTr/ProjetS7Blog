@@ -1,6 +1,7 @@
 package modele;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -17,7 +18,14 @@ public class MotCle {
                     referencedColumnName="idMessage")})
     private List<Message> messages;
 
-    public MotCle(String motCle) { this.motCle = motCle; }
+    public MotCle() {
+        messages = new ArrayList<Message>();
+    }
+
+    public MotCle(String motCle) {
+        this.motCle = motCle;
+        messages = new ArrayList<Message>();
+    }
 
     public String getMotCle() { return motCle; }
 

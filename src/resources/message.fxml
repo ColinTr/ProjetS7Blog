@@ -69,7 +69,8 @@
                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             </columnConstraints>
             <rowConstraints>
-               <RowConstraints maxHeight="-Infinity" valignment="CENTER" vgrow="SOMETIMES" />
+               <RowConstraints fx:id="rowImages" maxHeight="-Infinity" valignment="CENTER" vgrow="SOMETIMES" />
+               <RowConstraints fx:id="rowLiens" maxHeight="-Infinity" valignment="CENTER" vgrow="SOMETIMES" />
             </rowConstraints>
             <ImageView fx:id="image" fitHeight="100.0" fitWidth="178.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" />
             <JFXButton fx:id="boutonImagePrecedente" prefWidth="33.0" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
@@ -97,6 +98,37 @@
                <padding>
                   <Insets left="-4.0" right="-4.0" />
                </padding>
+            </JFXButton>
+            <Hyperlink fx:id="texteLien" text="Hyperlink" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <JFXButton fx:id="boutonLienSuivant" prefHeight="33.0" prefWidth="33.0" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+               <graphic>
+                  <ImageView fitHeight="33.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/SMALL_arrow.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="-4.0" right="-4.0" />
+               </padding>
+               <GridPane.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </GridPane.margin>
+            </JFXButton>
+            <JFXButton fx:id="boutonLienPrecedent" prefWidth="33.0" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+               <graphic>
+                  <ImageView fitHeight="33.0" fitWidth="33.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/SMALL_arrow.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="-4.0" right="-4.0" />
+               </padding>
+               <GridPane.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </GridPane.margin>
             </JFXButton>
          </GridPane>
       </GridPane>

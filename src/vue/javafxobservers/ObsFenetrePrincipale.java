@@ -21,10 +21,7 @@ import vue.FenetreDeConnexion;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class ObsFenetrePrincipale implements Initializable {
 
@@ -41,14 +38,20 @@ public class ObsFenetrePrincipale implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        textNomUtilisateur.setText(utilisateurConnecte.getPrenom() + " " + utilisateurConnecte.getNom());
+
         boutonSupprimerFiltres.setOnAction(event -> {
             datePicker.setValue(null);
             fieldMotsCles.setText(null);
             rafraichirMessages();
+
+            event.consume();
         });
 
         boutonChercher.setOnAction(event -> {
             rafraichirMessages();
+
+            event.consume();
         });
 
         boutonPosterUnMessage.setOnAction(event -> {
@@ -59,6 +62,7 @@ public class ObsFenetrePrincipale implements Initializable {
                 Stage stage = new Stage();
                 ObsFenetreCreerMessage obsCreerMessage = loader.getController();
                 obsCreerMessage.setUtilisateurConnecte(utilisateurConnecte);
+                obsCreerMessage.setObsFenetrePrincipale(this);
                 stage.getIcons().add(new Image(FenetreDeConnexion.class.getResourceAsStream("/resources/images/icon.png")));
                 stage.setTitle("Poster un nouveau message");
                 stage.setScene(new Scene(root));
@@ -67,12 +71,14 @@ public class ObsFenetrePrincipale implements Initializable {
             catch (IOException e) {
                 e.printStackTrace();
             }
+
+            event.consume();
         });
 
         rafraichirMessages();
     }
 
-    private void rafraichirMessages(){
+    public void rafraichirMessages(){
 
         LocalDate localDate = datePicker.getValue();
         System.out.println(localDate);
@@ -83,7 +89,15 @@ public class ObsFenetrePrincipale implements Initializable {
             System.out.println(Arrays.toString(motCles));
         }
 
+        vboxPrincipale.getChildren().clear();
+
         List<Message> messages = MessageDAO.getAllMessages();
+
+        //Trie les messages dans l'ordre croissant des dates :
+        messages.sort(Comparator.comparing(Message::getDate));
+        //Donc on inverse la liste pour avoir les messages les plus récents d'abord :
+        Collections.reverse(messages);
+
         for(Message m : messages){
             Parent root = null;
             try{
@@ -91,12 +105,15 @@ public class ObsFenetrePrincipale implements Initializable {
                 root = loader.load();
                 ObsMessage obsMessage = loader.getController();
 
+                obsMessage.setObsFenetrePrincipale(this);
+                obsMessage.setMessageAffiche(m);
+
                 List<javafx.scene.image.Image> listeImages = new ArrayList<>();
                 for(modele.Image img : m.getImages()){
                     listeImages.add(new javafx.scene.image.Image(img.getAdresseImage()));
                 }
 
-                obsMessage.definirMessage(m.getUtilisateur().getPrenom() + " " + m.getUtilisateur().getNom(), m.getDate().toString(), m.getTitre(), m.getTexte(), listeImages);
+                obsMessage.definirMessage(m.getUtilisateur().getPrenom() + " " + m.getUtilisateur().getNom(), m.getDate().toString(), m.getTitre(), m.getTexte(), listeImages, m.getLiens());
 
                 if(!m.getUtilisateur().getAdresseMail().equals(utilisateurConnecte.getAdresseMail())) {
                     obsMessage.supprimerCommandes();
@@ -104,6 +121,10 @@ public class ObsFenetrePrincipale implements Initializable {
 
                 if(m.getImages().isEmpty()){
                     obsMessage.supprimerImages();
+                }
+
+                if(m.getLiens().isEmpty()){
+                    obsMessage.supprimerLiens();
                 }
 
             } catch(IOException e){

@@ -11,8 +11,11 @@ public class Lien {
     private String adresseLien;
     private String texteLien;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY) //On ne met pas CascadeType.ALL car lorsqu'on supprime un lien on ne veut pas supprimer son message
     private Message message;
+
+    public Lien() {
+    }
 
     public Lien(String adresseLien, String texteLien) {
         this.adresseLien = adresseLien;
@@ -20,4 +23,12 @@ public class Lien {
     }
 
     public void setMessage(Message message){ this.message = message; }
+
+    public String getAdresseLien() {
+        return adresseLien;
+    }
+
+    public String getTexteLien() {
+        return texteLien;
+    }
 }

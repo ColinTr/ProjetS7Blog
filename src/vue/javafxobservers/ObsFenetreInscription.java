@@ -43,6 +43,8 @@ public class ObsFenetreInscription implements Initializable {
             else{
                 errorMessage.setText("Merci de remplir tous les champs.");
             }
+
+            event.consume();
         });
 
     }

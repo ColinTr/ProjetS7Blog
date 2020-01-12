@@ -10,7 +10,7 @@ public class Image {
 
     private String adresseImage;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY) //On ne met pas CascadeType.ALL car lorsqu'on supprime une image on ne veut pas supprimer son message
     private Message message;
 
     public Image() {
