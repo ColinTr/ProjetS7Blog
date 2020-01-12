@@ -41,7 +41,6 @@ public class MessageDAO {
         if (Connexion.getEntityManager().contains(message)){
             Connexion.beginTransaction();
             try{
-                message.setUtilisateur(null);
                 Connexion.getEntityManager().remove(message);
                 Connexion.commitTransaction();
             } catch (Exception e){
