@@ -36,22 +36,25 @@ public class ManipulationUtilisateur {
         utilisateur.addMessage(message);
 
         for(String motCle : motsCles){
-            //TODO REGARDER SI LES MOTS CLES EXISTENT DEJA, SINON LES CREER
+            MotCle mc = new MotCle(motCle);
+            message.addMotCle(mc);
+            mc.ajouterMessage(message);
+            //MotCleDAO.ajouterMotCle(mc); //Ne l'ajoutera pas si il existe déjà dans la BDD
         }
 
         for(Image image : images){
             message.addImage(image);
             image.setMessage(message);
-            Connexion.getEntityManager().persist(image);
+            //ImageDAO.ajouterImage(image);
         }
 
         for(Lien lien : liens){
             message.addLien(lien);
             lien.setMessage(message);
-            Connexion.getEntityManager().persist(lien);
+            //LienDAO.ajouterLien(lien);
         }
 
-        Connexion.getEntityManager().persist(message);
+        MessageDAO.ajouterMessage(message);
 
         return true;
     }

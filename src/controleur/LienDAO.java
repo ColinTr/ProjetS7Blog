@@ -1,13 +1,13 @@
 package controleur;
 
-import modele.MotCle;
+import modele.Lien;
 
-public class MotCleDAO {
-    public static void ajouterMotCle(MotCle motCle){
-        if (!Connexion.getEntityManager().contains(motCle)){
+public class LienDAO {
+    public static void ajouterLien(Lien lien){
+        if (!Connexion.getEntityManager().contains(lien)){
             Connexion.beginTransaction();
             try{
-                Connexion.getEntityManager().persist(motCle);
+                Connexion.getEntityManager().persist(lien);
                 Connexion.commitTransaction();
             } catch (Exception e){
                 e.printStackTrace();

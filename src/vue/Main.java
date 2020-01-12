@@ -71,5 +71,7 @@ public class Main {
         Connexion.commitTransaction();
 
         Connexion.close();
+
+        System.out.println();
     }
 }

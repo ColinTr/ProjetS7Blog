@@ -50,17 +50,6 @@ public class MessageDAO {
         }
     }
 
-
-    public static boolean posterMessage(){
-        //TODO
-        return true;
-    }
-
-    public static boolean supprimerMessage(){
-        //TODO
-        return true;
-    }
-
     public static boolean modifierMessage(){
         //TODO
         return true;
