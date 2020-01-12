@@ -18,6 +18,7 @@ import javafx.scene.layout.RowConstraints;
 import javafx.scene.text.Text;
 import modele.Lien;
 import modele.Message;
+import modele.MotCle;
 
 import java.awt.*;
 import java.io.IOException;
@@ -29,6 +30,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class ObsMessage implements Initializable {
+    @FXML private Text textMotCles;
     @FXML private JFXButton boutonLienPrecedent;
     @FXML private JFXButton boutonLienSuivant;
     @FXML private Hyperlink texteLien;
@@ -64,7 +66,7 @@ public class ObsMessage implements Initializable {
             Desktop desktop = Desktop.getDesktop();
             if (desktop.isSupported(Desktop.Action.BROWSE)) {
                 try {
-                    desktop.browse(new URI(liens.get(indexLien).getAdresseLien()));
+                    desktop.browse(new URI("http://" + liens.get(indexLien).getAdresseLien()));
                 } catch (IOException | URISyntaxException exc) {
                     exc.printStackTrace();
                 }
@@ -143,7 +145,11 @@ public class ObsMessage implements Initializable {
         gridPaneImages.getChildren().removeAll(boutonLienPrecedent, boutonLienSuivant, texteLien);
     }
 
-    public void definirMessage(String nom, String date, String titre, String message, List<Image> imgs, List<Lien> liens){
+    public void supprimerMotsCles(){
+        gridPaneContenuMessage.getChildren().remove(textMotCles);
+    }
+
+    public void definirMessage(String nom, String date, String titre, String message, List<Image> imgs, List<Lien> liens, List<MotCle> motCles){
         texteNom.setText(nom);
         texteDate.setText(date);
         texteTitre.setText(titre);
@@ -159,6 +165,14 @@ public class ObsMessage implements Initializable {
 
         if(!liens.isEmpty()){
             texteLien.setText(liens.get(0).getTexteLien());
+        }
+
+        if(!motCles.isEmpty()){
+            StringBuilder texteMotCles = new StringBuilder();
+            for(MotCle m : motCles){
+                texteMotCles.append(" ").append(m.getMotCle());
+            }
+            textMotCles.setText(texteMotCles.toString());
         }
     }
 

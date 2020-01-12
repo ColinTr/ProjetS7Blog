@@ -113,19 +113,15 @@ public class ObsFenetrePrincipale implements Initializable {
                     listeImages.add(new javafx.scene.image.Image(img.getAdresseImage()));
                 }
 
-                obsMessage.definirMessage(m.getUtilisateur().getPrenom() + " " + m.getUtilisateur().getNom(), m.getDate().toString(), m.getTitre(), m.getTexte(), listeImages, m.getLiens());
+                obsMessage.definirMessage(m.getUtilisateur().getPrenom() + " " + m.getUtilisateur().getNom(), m.getDate().toString(), m.getTitre(), m.getTexte(), listeImages, m.getLiens(), m.getMotCles());
 
-                if(!m.getUtilisateur().getAdresseMail().equals(utilisateurConnecte.getAdresseMail())) {
-                    obsMessage.supprimerCommandes();
-                }
+                if(!m.getUtilisateur().getAdresseMail().equals(utilisateurConnecte.getAdresseMail())) { obsMessage.supprimerCommandes(); }
 
-                if(m.getImages().isEmpty()){
-                    obsMessage.supprimerImages();
-                }
+                if(m.getImages().isEmpty()){ obsMessage.supprimerImages(); }
 
-                if(m.getLiens().isEmpty()){
-                    obsMessage.supprimerLiens();
-                }
+                if(m.getLiens().isEmpty()){ obsMessage.supprimerLiens(); }
+
+                if(m.getMotCles().isEmpty()){ obsMessage.supprimerMotsCles(); }
 
             } catch(IOException e){
                 e.printStackTrace();

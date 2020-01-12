@@ -39,7 +39,7 @@ public class Main {
 
         Lien lien1 = new Lien("www.google.com", "google");
         Lien lien2 = new Lien("www.youtube.com", "youtube");
-        Lien lien3 = new Lien("https://celene.univ-tours.fr", "celene");
+        Lien lien3 = new Lien("celene.univ-tours.fr", "celene");
 
         lien1.setMessage(m5);
         lien2.setMessage(m5);
@@ -84,7 +84,5 @@ public class Main {
         Connexion.commitTransaction();
 
         Connexion.close();
-
-        System.out.println();
     }
 }

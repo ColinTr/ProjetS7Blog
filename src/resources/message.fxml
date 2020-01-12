@@ -39,13 +39,14 @@
    <center>
       <GridPane fx:id="gridPaneContenuMessage" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" BorderPane.alignment="CENTER">
          <BorderPane.margin>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            <Insets left="10.0" right="10.0" top="10.0" />
          </BorderPane.margin>
          <columnConstraints>
-            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" />
          </columnConstraints>
          <rowConstraints>
             <RowConstraints maxHeight="-Infinity" vgrow="ALWAYS" />
+            <RowConstraints maxHeight="-Infinity" valignment="TOP" vgrow="ALWAYS" />
             <RowConstraints maxHeight="-Infinity" valignment="TOP" vgrow="ALWAYS" />
             <RowConstraints maxHeight="-Infinity" valignment="TOP" vgrow="ALWAYS" />
          </rowConstraints>
@@ -131,6 +132,11 @@
                </GridPane.margin>
             </JFXButton>
          </GridPane>
+         <Text fx:id="textMotCles" fill="#666666" strokeType="OUTSIDE" strokeWidth="0.0" text="" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
+            <GridPane.margin>
+               <Insets bottom="5.0" left="5.0" right="5.0" />
+            </GridPane.margin>
+         </Text>
       </GridPane>
    </center>
    <bottom>
