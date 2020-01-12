@@ -10,6 +10,14 @@
     -fx-background-color : #F2A005;
 }
 
+#boutonPosterUnMessage{
+    -fx-font-size: 14; /* 12 */
+}
+
+#texteMessage{
+    -fx-wrap-text : true;
+}
+
 .button{
     -fx-border-color: transparent;
     -fx-border-width: 0;

@@ -74,6 +74,7 @@ public class ObsFenetreDeConnexion implements Initializable {
                 if(utilisateur != null){
 
                     //On ouvre la fenetre principale :
+                    ObsFenetrePrincipale.setUtilisateurConnecte(utilisateur);
                     creerFenetre("/resources/fenetrePrincipale.fxml", "/resources/images/icon.png", "Polyblogger");
                     ((Stage) boutonConnection.getScene().getWindow()).close();
                 }

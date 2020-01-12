@@ -1,7 +1,6 @@
 package modele;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 public class Image {
@@ -11,11 +10,18 @@ public class Image {
 
     private String adresseImage;
 
-    @ManyToMany
-    @JoinTable(name="IMAGE_MESSAGE",
-            joinColumns={@JoinColumn(name="IMAGES_ID",
-                    referencedColumnName="idImage")},
-            inverseJoinColumns={@JoinColumn(name="MESSAGES_ID",
-                    referencedColumnName="idMessage")})
-    private List<Message> messages;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Message message;
+
+    public Image(String adresseImage) {
+        this.adresseImage = adresseImage;
+    }
+
+    public void setMessages(Message msg) {
+        message = msg;
+    }
+
+    public String getAdresseImage() {
+        return adresseImage;
+    }
 }

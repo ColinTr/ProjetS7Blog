@@ -13,12 +13,14 @@ public class Message {
     private int idMessage;
 
     private String titre;
+
+    @Column(columnDefinition="TEXT")
     private String texte;
 
     @Temporal(TemporalType.TIMESTAMP)
     private java.util.Date date;
 
-    @ManyToMany(mappedBy = "messages", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "messages", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Image> images;
 
     @ManyToMany(mappedBy = "messages", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
