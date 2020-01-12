@@ -15,11 +15,10 @@ public class TCPClient {
     }
 
     public static String uploadImage(String chemin){
-
         // On va définir un protocole qui est le suivant :
-        // - 4 premier bit définisse la taille du nom en bit
-        // - nom de l'image avec extension
-        // - taille du fichier sur 8 bits
+        // - taille du nom du fichier sur 4 octets
+        // - nom du fichier
+        // - taille du fichier sur 8 octets
         // - données du fichier
 
         Socket socket = null;
