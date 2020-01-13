@@ -79,15 +79,15 @@ public class ControleurDonnees {
 
     /**
      * Cette fonction permet de renvoyer une sous liste des messages du ModeleDonnes correspondants aux mots-clés et à la date rentrés.
-     * @param motsCles
-     * @param date
-     * @return
+     * @param motsCles l'ensemble des mots-clés.
+     * @param date la date des messages à afficher.
+     * @return La liste des messages filtrés et triée par plus grande date d'abord.
      */
     public static List<Message> filtrerMessage(String[] motsCles, LocalDate date){
 
         List<Message> messages = new ArrayList<>();
 
-        for(Message message : messages){
+        for(Message message : ModeleDonnees.getMessageList()){
             LocalDate dateMessage = message.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
             if(date != null){

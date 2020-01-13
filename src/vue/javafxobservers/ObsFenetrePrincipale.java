@@ -42,8 +42,6 @@ public class ObsFenetrePrincipale implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        System.out.println(ModeleDonnees.getUtilisateurConnecte());
-
         textNomUtilisateur.setText(ModeleDonnees.getUtilisateurConnecte().getPrenom() + " " + ModeleDonnees.getUtilisateurConnecte().getNom());
 
         boutonSupprimerFiltres.setOnAction(event -> {
@@ -98,8 +96,7 @@ public class ObsFenetrePrincipale implements Initializable {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/message.fxml"));
                 root = loader.load();
                 ObsMessage obsMessage = loader.getController();
-
-                obsMessage.definirMessage(message);
+                obsMessage.definirMessage(message); //Chaque obsMessage possède un objet Message pour pouvoir le supprimer/modifier
 
             } catch(IOException e){
                 e.printStackTrace();

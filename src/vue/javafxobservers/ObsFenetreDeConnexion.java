@@ -17,7 +17,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import modele.ModeleDonnees;
 import modele.Utilisateur;
+import org.dom4j.rule.Mode;
 import vue.FenetreDeConnexion;
 
 import java.io.IOException;
@@ -78,9 +80,12 @@ public class ObsFenetreDeConnexion implements Initializable {
                     Parent root;
                     try {
                         FXMLLoader loader = new FXMLLoader(ObsFenetreDeConnexion.class.getResource("/resources/fenetrePrincipale.fxml"));
-                        root = loader.load();
 
                         ControleurDonnees.initialiserDonnees(loader.getController(), utilisateur);
+
+                        root = loader.load();
+
+                        ModeleDonnees.setObsFenetrePrincipale(loader.getController());
 
                         Stage stage = new Stage();
                         stage.getIcons().add(new Image(FenetreDeConnexion.class.getResourceAsStream("/resources/images/icon.png")));
