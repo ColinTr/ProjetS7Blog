@@ -106,11 +106,11 @@ public class ObsFenetreDeConnexion implements Initializable {
                     }
                 }
                 else{
-                    errorText.setText("Impossible de se connecter à la base de données.");
+                    errorText.setText("Remplissez tous les champs");
                 }
             }
             else{
-                errorText.setText("Remplissez tous les champs");
+                errorText.setText("Impossible de se connecter à la base de données.");
             }
             event.consume();
         });
@@ -136,7 +136,7 @@ public class ObsFenetreDeConnexion implements Initializable {
                 }
             }
             else{
-                errorText.setText("Remplissez tous les champs");
+                errorText.setText("Impossible de se connecter à la base de données.");
             }
             event.consume();
         });
