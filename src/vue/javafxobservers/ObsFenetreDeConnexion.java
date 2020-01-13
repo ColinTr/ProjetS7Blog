@@ -29,15 +29,12 @@ public class ObsFenetreDeConnexion implements Initializable {
     @FXML JFXButton boutonConnection;
     @FXML Button boutonOptions;
     @FXML Button boutonEye;
-
     @FXML ImageView imageEye;
-
     @FXML JFXTextField fieldNomDeCompte;
     @FXML JFXPasswordField fieldMotDePasse;
-
     @FXML Text errorText;
 
-    boolean motDePasseCache = true;
+    private boolean motDePasseCache = true;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

@@ -2,7 +2,6 @@ package vue.javafxobservers;
 
 import com.jfoenix.controls.JFXButton;
 import controleur.MessageDAO;
-import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
