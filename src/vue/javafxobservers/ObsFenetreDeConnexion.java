@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import controleur.Connexion;
+import controleur.ControleurDonnees;
 import controleur.UtilisateurDAO;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -73,8 +74,24 @@ public class ObsFenetreDeConnexion implements Initializable {
                 if(utilisateur != null){
 
                     //On ouvre la fenetre principale :
-                    ObsFenetrePrincipale.setUtilisateurConnecte(utilisateur);
-                    creerFenetre("/resources/fenetrePrincipale.fxml", "/resources/images/icon.png", "Polyblogger");
+
+                    Parent root;
+                    try {
+                        FXMLLoader loader = new FXMLLoader(ObsFenetreDeConnexion.class.getResource("/resources/fenetrePrincipale.fxml"));
+                        root = loader.load();
+
+                        ControleurDonnees.initialiserDonnees(loader.getController(), utilisateur);
+
+                        Stage stage = new Stage();
+                        stage.getIcons().add(new Image(FenetreDeConnexion.class.getResourceAsStream("/resources/images/icon.png")));
+                        stage.setTitle("Polyblogger");
+                        stage.setScene(new Scene(root));
+                        stage.show();
+                    }
+                    catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
                     event.consume();
                     ((Stage) boutonConnection.getScene().getWindow()).close();
                 }
@@ -89,7 +106,19 @@ public class ObsFenetreDeConnexion implements Initializable {
         });
 
         boutonInscription.setOnAction(event -> {
-            creerFenetre("/resources/fenetreInscription.fxml", "/resources/images/icon.png", "Créer un compte");
+            Parent root;
+            try {
+                FXMLLoader loader = new FXMLLoader(ObsFenetreDeConnexion.class.getResource("/resources/fenetreInscription.fxml"));
+                root = loader.load();
+                Stage stage = new Stage();
+                stage.getIcons().add(new Image(FenetreDeConnexion.class.getResourceAsStream("/resources/images/icon.png")));
+                stage.setTitle("Créer un compte");
+                stage.setScene(new Scene(root));
+                stage.show();
+            }
+            catch (IOException e) {
+                e.printStackTrace();
+            }
             event.consume();
         });
 
@@ -97,21 +126,5 @@ public class ObsFenetreDeConnexion implements Initializable {
             //TODO Lancer la fenêtre des options
             event.consume();
         });
-    }
-
-    private void creerFenetre(String fxml, String icon, String titre){
-        Parent root;
-        try {
-            FXMLLoader loader = new FXMLLoader(ObsFenetreDeConnexion.class.getResource(fxml));
-            root = loader.load();
-            Stage stage = new Stage();
-            stage.getIcons().add(new Image(FenetreDeConnexion.class.getResourceAsStream(icon)));
-            stage.setTitle(titre);
-            stage.setScene(new Scene(root));
-            stage.show();
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 }

@@ -3,7 +3,7 @@ package vue.javafxobservers;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
-import controleur.ManipulationUtilisateur;
+import controleur.ControleurDonnees;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.text.Text;
@@ -33,7 +33,7 @@ public class ObsFenetreInscription implements Initializable {
             String motDePasse = fieldMotDePasse.getText();
 
             if(!mail.isEmpty() && !nom.isEmpty() && !prenom.isEmpty() && !adresse.isEmpty() && !motDePasse.isEmpty()){
-                if(ManipulationUtilisateur.inscription(nom, prenom, adresse, mail, motDePasse)){
+                if(ControleurDonnees.inscription(nom, prenom, adresse, mail, motDePasse)){
                     ((Stage) boutonCreerCompte.getScene().getWindow()).close();
                 }
                 else{

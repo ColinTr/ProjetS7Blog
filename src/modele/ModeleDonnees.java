@@ -2,33 +2,49 @@ package modele;
 
 import vue.javafxobservers.ObsFenetrePrincipale;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class ModeleDonnees {
-    private final Utilisateur utilisateurConnecte;
-    private final List<Message> messageList = new ArrayList<>();
-    private final List<MotCle> motCleList = new ArrayList<>();
-    private final ObsFenetrePrincipale obsFenetrePrincipale; //On l'initialise à null, mais il sera rédfini une fois qu'une instance de ObsFenetrePrincipale est créée
+public final class ModeleDonnees {
+    private static Utilisateur utilisateurConnecte;
+    private static List<Message> messageList;
+    private static List<MotCle> motCleList;
+    private static ObsFenetrePrincipale obsFenetrePrincipale;
 
-    public ModeleDonnees(Utilisateur utilisateurConnecte, ObsFenetrePrincipale obsFenetrePrincipale) {
-        this.utilisateurConnecte = utilisateurConnecte;
-        this.obsFenetrePrincipale = obsFenetrePrincipale;
-    }
-
-    public Utilisateur getUtilisateurConnecte() {
+    public static Utilisateur getUtilisateurConnecte() {
         return utilisateurConnecte;
     }
 
-    public List<Message> getMessageList() {
+    public static List<Message> getMessageList() {
         return messageList;
     }
 
-    public List<MotCle> getMotCleList() {
+    public static List<MotCle> getMotCleList() {
         return motCleList;
     }
 
-    public ObsFenetrePrincipale getObsFenetrePrincipale() {
+    public static ObsFenetrePrincipale getObsFenetrePrincipale() {
         return obsFenetrePrincipale;
+    }
+
+    public static void setUtilisateurConnecte(Utilisateur utilisateurConnecte) {
+        ModeleDonnees.utilisateurConnecte = utilisateurConnecte;
+    }
+
+    public static void setMessageList(List<Message> messageList) {
+        ModeleDonnees.messageList = messageList;
+    }
+
+    public static void setMotCleList(List<MotCle> motCleList) {
+        ModeleDonnees.motCleList = motCleList;
+    }
+
+    public static void setObsFenetrePrincipale(ObsFenetrePrincipale obsFenetrePrincipale) {
+        ModeleDonnees.obsFenetrePrincipale = obsFenetrePrincipale;
+    }
+
+    /**
+     * Constructeur privé pour interdire la création d'une instance de ModeleDonnees.
+     */
+    private ModeleDonnees(){
     }
 }

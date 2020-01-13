@@ -1,7 +1,7 @@
 package vue.javafxobservers;
 
 import com.jfoenix.controls.*;
-import controleur.ManipulationUtilisateur;
+import controleur.ControleurDonnees;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -11,6 +11,7 @@ import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import modele.Image;
 import modele.Lien;
+import modele.ModeleDonnees;
 import modele.Utilisateur;
 
 import java.net.URL;
@@ -30,9 +31,6 @@ public class ObsFenetreCreerMessage  implements Initializable {
     @FXML private TextField fieldAdresseImage;
     @FXML private JFXListView<String> imagesListView;
     private static ObservableList<String> imagesObservableList = FXCollections.observableArrayList();
-
-    private static Utilisateur utilisateurConnecte;
-    private static ObsFenetrePrincipale obsFenetrePrincipale;
 
     @FXML private JFXButton boutonAjouterLien;
     @FXML private TextField fieldTexteLien;
@@ -85,9 +83,9 @@ public class ObsFenetreCreerMessage  implements Initializable {
                 liens.add(new Lien(lien[1], lien[0]));
             }
 
-            ManipulationUtilisateur.posterMessage(utilisateurConnecte, titre, texte, motsCles, images, liens);
+            ControleurDonnees.posterMessage(ModeleDonnees.getUtilisateurConnecte(), titre, texte, motsCles, images, liens);
 
-            obsFenetrePrincipale.rafraichirMessages();
+            ModeleDonnees.getObsFenetrePrincipale().rafraichirMessages();
 
             Stage stage = (Stage) boutonAnnuler.getScene().getWindow();
             stage.close();
@@ -165,8 +163,4 @@ public class ObsFenetreCreerMessage  implements Initializable {
             }
         }
     }
-
-    public static void setUtilisateurConnecte(Utilisateur u){ utilisateurConnecte = u; }
-
-    public static void setObsFenetrePrincipale(ObsFenetrePrincipale obsFenetrePrincipale) { ObsFenetreCreerMessage.obsFenetrePrincipale = obsFenetrePrincipale; }
 }

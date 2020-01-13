@@ -1,7 +1,7 @@
 package vue.javafxobservers;
 
 import com.jfoenix.controls.JFXButton;
-import controleur.MessageDAO;
+import controleur.ControleurDonnees;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -15,10 +15,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.text.Text;
-import modele.Lien;
-import modele.Message;
-import modele.MotCle;
-import modele.Utilisateur;
+import modele.*;
 
 import java.awt.*;
 import java.io.IOException;
@@ -46,7 +43,6 @@ public class ObsMessage implements Initializable {
     private List<Lien> liens;
     private int indexLien;
     @FXML private ImageView image;
-    private ObsFenetrePrincipale obsFenetrePrincipale;
     private Message messageAffiche;
 
     @FXML private BorderPane borderPaneMessage;
@@ -83,8 +79,8 @@ public class ObsMessage implements Initializable {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Êtes-vous sûr de vouloir supprimer ce message ?");
             Optional<ButtonType> choose = alert.showAndWait();
             if(choose.get() == ButtonType.OK){
-                MessageDAO.supprimerMessage(messageAffiche);
-                obsFenetrePrincipale.rafraichirMessages();
+                ControleurDonnees.supprimerMessage(messageAffiche);
+                ModeleDonnees.getObsFenetrePrincipale().rafraichirMessages();
             }
             event.consume();
         });
@@ -150,7 +146,7 @@ public class ObsMessage implements Initializable {
         gridPaneContenuMessage.getChildren().remove(textMotCles);
     }
 
-    public void definirMessage(Message message, Utilisateur utilisateurConnecte){
+    public void definirMessage(Message message){
         messageAffiche = message;
 
         texteNom.setText(message.getUtilisateur().getPrenom() + " " + message.getUtilisateur().getNom());
@@ -182,7 +178,7 @@ public class ObsMessage implements Initializable {
             textMotCles.setText(texteMotCles.toString());
         }
 
-        if(!message.getUtilisateur().getAdresseMail().equals(utilisateurConnecte.getAdresseMail())) { supprimerCommandes(); }
+        if(!message.getUtilisateur().getAdresseMail().equals(ModeleDonnees.getUtilisateurConnecte().getAdresseMail())) { supprimerCommandes(); }
 
         if(message.getImages().isEmpty()){ supprimerImages(); }
 
@@ -190,6 +186,4 @@ public class ObsMessage implements Initializable {
 
         if(message.getMotCles().isEmpty()){ supprimerMotsCles(); }
     }
-
-    public void setObsFenetrePrincipale(ObsFenetrePrincipale obsFenetrePrincipale) { this.obsFenetrePrincipale = obsFenetrePrincipale; }
 }
