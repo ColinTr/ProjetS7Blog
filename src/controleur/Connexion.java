@@ -18,6 +18,8 @@ public abstract class Connexion {
             em = emf.createEntityManager();
             return true;
         } catch(PersistenceException a){
+            emf = null;
+            em = null;
             return false;
         }
     }
@@ -27,8 +29,15 @@ public abstract class Connexion {
         properties.put("javax.persistence.jdbc.url", url);
         properties.put("javax.persistence.jdbc.user", user);
         properties.put("javax.persistence.jdbc.password", password);
-        emf = Persistence.createEntityManagerFactory(mode,properties);
-        em = emf.createEntityManager();
+        try{
+            emf = Persistence.createEntityManagerFactory(mode,properties);
+            em = emf.createEntityManager();
+        }
+        catch(PersistenceException a){
+            emf = null;
+            em = null;
+        }
+
     }
 
 

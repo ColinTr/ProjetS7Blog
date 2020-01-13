@@ -10,6 +10,7 @@ public class TCPClient {
     private final static String serverIP = "127.0.0.1";
     private final static int serverPort = 4444;
 
+    //Doit être remove
     public static void main( String[] args ) {
         System.out.println(TCPClient.uploadImage("C:\\Users\\GuillaumeBouchard\\Desktop\\a.jpg"));
     }
