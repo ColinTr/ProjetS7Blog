@@ -23,11 +23,11 @@ public class Main {
         String shortLoremIpsum = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt u";
         String loremIpsum = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
 
-        Message m1 = new Message("titre message 1", shortLoremIpsum, new java.sql.Date(System.currentTimeMillis()));
-        Message m2 = new Message("titre message 2", loremIpsum, new java.sql.Date(System.currentTimeMillis()));
-        Message m3 = new Message("titre message 3", shortLoremIpsum, new java.sql.Date(System.currentTimeMillis()));
-        Message m4 = new Message("titre message 4", loremIpsum, new java.sql.Date(System.currentTimeMillis()));
-        Message m5 = new Message("titre message 5", loremIpsum, new java.sql.Date(System.currentTimeMillis()));
+        Message m1 = new Message("titre message 1", shortLoremIpsum, new java.util.Date(System.currentTimeMillis()));
+        Message m2 = new Message("titre message 2", loremIpsum, new java.util.Date(System.currentTimeMillis()));
+        Message m3 = new Message("titre message 3", shortLoremIpsum, new java.util.Date(System.currentTimeMillis()));
+        Message m4 = new Message("titre message 4", loremIpsum, new java.util.Date(System.currentTimeMillis()));
+        Message m5 = new Message("titre message 5", loremIpsum, new java.util.Date(System.currentTimeMillis()));
 
         modele.Image img1 = new modele.Image("https://humancoders-formations.s3.amazonaws.com/uploads/course/logo/93/formation-git-avance.png");
         modele.Image img2 = new modele.Image("https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/1200px-Octicons-mark-github.svg.png");

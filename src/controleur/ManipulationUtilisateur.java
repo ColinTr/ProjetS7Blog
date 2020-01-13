@@ -2,6 +2,7 @@ package controleur;
 
 import modele.*;
 
+import java.util.Date;
 import java.util.List;
 
 public class ManipulationUtilisateur {
@@ -28,7 +29,7 @@ public class ManipulationUtilisateur {
      * @param liens Les liens associés au message
      */
     public static boolean posterMessage(Utilisateur utilisateur, String titre, String texteMessage, String[] motsCles, List<Image> images, List<Lien> liens){
-        java.sql.Date dateDeCreation = new java.sql.Date(System.currentTimeMillis());
+        Date dateDeCreation = new Date(System.currentTimeMillis());
 
         Message message = new Message(titre, texteMessage, dateDeCreation);
 

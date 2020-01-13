@@ -19,12 +19,14 @@ import javafx.scene.text.Text;
 import modele.Lien;
 import modele.Message;
 import modele.MotCle;
+import modele.Utilisateur;
 
 import java.awt.*;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -149,13 +151,19 @@ public class ObsMessage implements Initializable {
         gridPaneContenuMessage.getChildren().remove(textMotCles);
     }
 
-    public void definirMessage(String nom, String date, String titre, String message, List<Image> imgs, List<Lien> liens, List<MotCle> motCles){
-        texteNom.setText(nom);
-        texteDate.setText(date);
-        texteTitre.setText(titre);
-        texteMessage.setText(message);
-        images = imgs;
-        this.liens = liens;
+    public void definirMessage(Message message, Utilisateur utilisateurConnecte){
+        messageAffiche = message;
+
+        texteNom.setText(message.getUtilisateur().getPrenom() + " " + message.getUtilisateur().getNom());
+        texteDate.setText(message.getDate().toString());
+        texteTitre.setText(message.getTitre());
+        texteMessage.setText(message.getTexte());
+
+        images = new ArrayList<>();
+        for(modele.Image img : message.getImages()){
+            images.add(new javafx.scene.image.Image(img.getAdresseImage()));
+        }
+        this.liens = message.getLiens();
         //Si il y a au moins une image, on l'initialise à la première image :
         if(!images.isEmpty()){
             Image img = images.get(0);
@@ -167,16 +175,22 @@ public class ObsMessage implements Initializable {
             texteLien.setText(liens.get(0).getTexteLien());
         }
 
-        if(!motCles.isEmpty()){
+        if(!message.getMotCles().isEmpty()){
             StringBuilder texteMotCles = new StringBuilder();
-            for(MotCle m : motCles){
+            for(MotCle m : message.getMotCles()){
                 texteMotCles.append(" ").append(m.getMotCle());
             }
             textMotCles.setText(texteMotCles.toString());
         }
+
+        if(!message.getUtilisateur().getAdresseMail().equals(utilisateurConnecte.getAdresseMail())) { supprimerCommandes(); }
+
+        if(message.getImages().isEmpty()){ supprimerImages(); }
+
+        if(message.getLiens().isEmpty()){ supprimerLiens(); }
+
+        if(message.getMotCles().isEmpty()){ supprimerMotsCles(); }
     }
 
     public void setObsFenetrePrincipale(ObsFenetrePrincipale obsFenetrePrincipale) { this.obsFenetrePrincipale = obsFenetrePrincipale; }
-
-    public void setMessageAffiche(Message messageAffiche) { this.messageAffiche = messageAffiche; }
 }

@@ -98,8 +98,8 @@ public class ObsFenetrePrincipale implements Initializable {
         //Donc on inverse la liste pour avoir les messages les plus récents d'abord :
         Collections.reverse(messages);
 
-        for(Message m : messages){
-            if(appliquerFiltres(localDate, motCles, m)){
+        for(Message message : messages){
+            if(appliquerFiltres(localDate, motCles, message)){
                 Parent root = null;
                 try{
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/message.fxml"));
@@ -107,22 +107,8 @@ public class ObsFenetrePrincipale implements Initializable {
                     ObsMessage obsMessage = loader.getController();
 
                     obsMessage.setObsFenetrePrincipale(this);
-                    obsMessage.setMessageAffiche(m);
 
-                    List<javafx.scene.image.Image> listeImages = new ArrayList<>();
-                    for(modele.Image img : m.getImages()){
-                        listeImages.add(new javafx.scene.image.Image(img.getAdresseImage()));
-                    }
-
-                    obsMessage.definirMessage(m.getUtilisateur().getPrenom() + " " + m.getUtilisateur().getNom(), m.getDate().toString(), m.getTitre(), m.getTexte(), listeImages, m.getLiens(), m.getMotCles());
-
-                    if(!m.getUtilisateur().getAdresseMail().equals(utilisateurConnecte.getAdresseMail())) { obsMessage.supprimerCommandes(); }
-
-                    if(m.getImages().isEmpty()){ obsMessage.supprimerImages(); }
-
-                    if(m.getLiens().isEmpty()){ obsMessage.supprimerLiens(); }
-
-                    if(m.getMotCles().isEmpty()){ obsMessage.supprimerMotsCles(); }
+                    obsMessage.definirMessage(message, utilisateurConnecte);
 
                 } catch(IOException e){
                     e.printStackTrace();
@@ -170,8 +156,6 @@ public class ObsFenetrePrincipale implements Initializable {
         return bool;
     }
 
-    public static void setUtilisateurConnecte(Utilisateur utilisateur){
-        utilisateurConnecte = utilisateur;
-    }
+    public static void setUtilisateurConnecte(Utilisateur utilisateur){ utilisateurConnecte = utilisateur; }
 
 }
