@@ -15,12 +15,14 @@ import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import modele.Message;
+import modele.MotCle;
 import modele.Utilisateur;
 import vue.FenetreDeConnexion;
 
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.*;
 
 public class ObsFenetrePrincipale implements Initializable {
@@ -81,12 +83,10 @@ public class ObsFenetrePrincipale implements Initializable {
     public void rafraichirMessages(){
 
         LocalDate localDate = datePicker.getValue();
-        System.out.println(localDate);
 
         String[] motCles = null;
-        if(fieldMotsCles.getText() != null){
+        if(fieldMotsCles.getText() != null && !fieldMotsCles.getText().isEmpty()){
             motCles = fieldMotsCles.getText().split(" ");
-            System.out.println(Arrays.toString(motCles));
         }
 
         vboxPrincipale.getChildren().clear();
@@ -99,38 +99,79 @@ public class ObsFenetrePrincipale implements Initializable {
         Collections.reverse(messages);
 
         for(Message m : messages){
-            Parent root = null;
-            try{
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/message.fxml"));
-                root = loader.load();
-                ObsMessage obsMessage = loader.getController();
+            if(appliquerFiltres(localDate, motCles, m)){
+                Parent root = null;
+                try{
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/message.fxml"));
+                    root = loader.load();
+                    ObsMessage obsMessage = loader.getController();
 
-                obsMessage.setObsFenetrePrincipale(this);
-                obsMessage.setMessageAffiche(m);
+                    obsMessage.setObsFenetrePrincipale(this);
+                    obsMessage.setMessageAffiche(m);
 
-                List<javafx.scene.image.Image> listeImages = new ArrayList<>();
-                for(modele.Image img : m.getImages()){
-                    listeImages.add(new javafx.scene.image.Image(img.getAdresseImage()));
+                    List<javafx.scene.image.Image> listeImages = new ArrayList<>();
+                    for(modele.Image img : m.getImages()){
+                        listeImages.add(new javafx.scene.image.Image(img.getAdresseImage()));
+                    }
+
+                    obsMessage.definirMessage(m.getUtilisateur().getPrenom() + " " + m.getUtilisateur().getNom(), m.getDate().toString(), m.getTitre(), m.getTexte(), listeImages, m.getLiens(), m.getMotCles());
+
+                    if(!m.getUtilisateur().getAdresseMail().equals(utilisateurConnecte.getAdresseMail())) { obsMessage.supprimerCommandes(); }
+
+                    if(m.getImages().isEmpty()){ obsMessage.supprimerImages(); }
+
+                    if(m.getLiens().isEmpty()){ obsMessage.supprimerLiens(); }
+
+                    if(m.getMotCles().isEmpty()){ obsMessage.supprimerMotsCles(); }
+
+                } catch(IOException e){
+                    e.printStackTrace();
                 }
-
-                obsMessage.definirMessage(m.getUtilisateur().getPrenom() + " " + m.getUtilisateur().getNom(), m.getDate().toString(), m.getTitre(), m.getTexte(), listeImages, m.getLiens(), m.getMotCles());
-
-                if(!m.getUtilisateur().getAdresseMail().equals(utilisateurConnecte.getAdresseMail())) { obsMessage.supprimerCommandes(); }
-
-                if(m.getImages().isEmpty()){ obsMessage.supprimerImages(); }
-
-                if(m.getLiens().isEmpty()){ obsMessage.supprimerLiens(); }
-
-                if(m.getMotCles().isEmpty()){ obsMessage.supprimerMotsCles(); }
-
-            } catch(IOException e){
-                e.printStackTrace();
+                vboxPrincipale.getChildren().add(root);
             }
-            vboxPrincipale.getChildren().add(root);
         }
+    }
+
+    private boolean appliquerFiltres(LocalDate date, String[] motsCles, Message message){
+
+        LocalDate dateMessage = message.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+        if(date != null){
+            if(motsCles != null && motsCles.length > 0){
+                return dateMessage.equals(date) && messageContientMotsCles(motsCles, message);
+            }
+            else return dateMessage.equals(date);
+        }
+        else{
+            if(motsCles != null && motsCles.length > 0) {
+                return messageContientMotsCles(motsCles, message);
+            }
+            else{
+                return true;
+            }
+        }
+    }
+
+    private boolean messageContientMotsCles(String[] motsCles, Message message){
+        boolean bool = true;
+
+        List<String> motsClesMessage = new ArrayList<>();
+        for(MotCle m : message.getMotCles()){
+            motsClesMessage.add(m.getMotCle());
+        }
+
+        for(String motCle : motsCles){
+            if (!motsClesMessage.contains(motCle)) {
+                bool = false;
+                break;
+            }
+        }
+
+        return bool;
     }
 
     public static void setUtilisateurConnecte(Utilisateur utilisateur){
         utilisateurConnecte = utilisateur;
     }
+
 }
