@@ -40,7 +40,6 @@ public class ObsFenetreDeConnexion implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Connexion.init("classique");
 
         Image openEye = new Image(FenetreDeConnexion.class.getResourceAsStream("/resources/images/SMALL_eye-opened.png"));
         Image closedEye = new Image(FenetreDeConnexion.class.getResourceAsStream("/resources/images/SMALL_eye-closed.png"));
@@ -67,38 +66,47 @@ public class ObsFenetreDeConnexion implements Initializable {
 
         boutonConnection.setOnAction(event -> {
 
-            String mail = fieldNomDeCompte.getText();
-            String motDePasse = fieldMotDePasse.getText();
-            if(!mail.isEmpty() && !motDePasse.isEmpty()){
-                Utilisateur utilisateur = UtilisateurDAO.testerAuthentification(mail, motDePasse);
+            if(Connexion.getEntityManager() == null){
+                Connexion.init("classique");
+            }
 
-                if(utilisateur != null){
+            if(Connexion.getEntityManager() != null){
+                String mail = fieldNomDeCompte.getText();
+                String motDePasse = fieldMotDePasse.getText();
+                if(!mail.isEmpty() && !motDePasse.isEmpty()){
+                    Utilisateur utilisateur = UtilisateurDAO.testerAuthentification(mail, motDePasse);
 
-                    Parent root;
-                    try {
-                        FXMLLoader loader = new FXMLLoader(ObsFenetreDeConnexion.class.getResource("/resources/fenetrePrincipale.fxml"));
+                    if(utilisateur != null){
 
-                        ControleurDonnees.initialiserDonnees(loader.getController(), utilisateur);
+                        Parent root;
+                        try {
+                            FXMLLoader loader = new FXMLLoader(ObsFenetreDeConnexion.class.getResource("/resources/fenetrePrincipale.fxml"));
 
-                        root = loader.load();
+                            ControleurDonnees.initialiserDonnees(loader.getController(), utilisateur);
 
-                        ModeleDonnees.setObsFenetrePrincipale(loader.getController()); //On le set ensuite car avant de faire loader.load() il est null
+                            root = loader.load();
 
-                        Stage stage = new Stage();
-                        stage.getIcons().add(new Image(FenetreDeConnexion.class.getResourceAsStream("/resources/images/icon.png")));
-                        stage.setTitle("Polyblogger");
-                        stage.setScene(new Scene(root));
-                        stage.show();
+                            ModeleDonnees.setObsFenetrePrincipale(loader.getController()); //On le set ensuite car avant de faire loader.load() il est null
+
+                            Stage stage = new Stage();
+                            stage.getIcons().add(new Image(FenetreDeConnexion.class.getResourceAsStream("/resources/images/icon.png")));
+                            stage.setTitle("Polyblogger");
+                            stage.setScene(new Scene(root));
+                            stage.show();
+                        }
+                        catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
+                        event.consume();
+                        ((Stage) boutonConnection.getScene().getWindow()).close();
                     }
-                    catch (IOException e) {
-                        e.printStackTrace();
+                    else{
+                        errorText.setText("Login ou mot de passe incorrect");
                     }
-
-                    event.consume();
-                    ((Stage) boutonConnection.getScene().getWindow()).close();
                 }
                 else{
-                    errorText.setText("Login ou mot de passe incorrect");
+                    errorText.setText("Impossible de se connecter à la base de données.");
                 }
             }
             else{
@@ -108,18 +116,27 @@ public class ObsFenetreDeConnexion implements Initializable {
         });
 
         boutonInscription.setOnAction(event -> {
-            Parent root;
-            try {
-                FXMLLoader loader = new FXMLLoader(ObsFenetreDeConnexion.class.getResource("/resources/fenetreInscription.fxml"));
-                root = loader.load();
-                Stage stage = new Stage();
-                stage.getIcons().add(new Image(FenetreDeConnexion.class.getResourceAsStream("/resources/images/icon.png")));
-                stage.setTitle("Créer un compte");
-                stage.setScene(new Scene(root));
-                stage.show();
+            if(Connexion.getEntityManager() == null){
+                Connexion.init("classique");
             }
-            catch (IOException e) {
-                e.printStackTrace();
+
+            if(Connexion.getEntityManager() != null){
+                Parent root;
+                try {
+                    FXMLLoader loader = new FXMLLoader(ObsFenetreDeConnexion.class.getResource("/resources/fenetreInscription.fxml"));
+                    root = loader.load();
+                    Stage stage = new Stage();
+                    stage.getIcons().add(new Image(FenetreDeConnexion.class.getResourceAsStream("/resources/images/icon.png")));
+                    stage.setTitle("Créer un compte");
+                    stage.setScene(new Scene(root));
+                    stage.show();
+                }
+                catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            else{
+                errorText.setText("Remplissez tous les champs");
             }
             event.consume();
         });
