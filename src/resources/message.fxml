@@ -70,8 +70,8 @@
                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             </columnConstraints>
             <rowConstraints>
-               <RowConstraints fx:id="rowImages" maxHeight="-Infinity" valignment="CENTER" vgrow="SOMETIMES" />
-               <RowConstraints fx:id="rowLiens" maxHeight="-Infinity" valignment="CENTER" vgrow="SOMETIMES" />
+               <RowConstraints maxHeight="-Infinity" valignment="CENTER" vgrow="SOMETIMES" />
+               <RowConstraints maxHeight="-Infinity" valignment="CENTER" vgrow="SOMETIMES" />
             </rowConstraints>
             <ImageView fx:id="image" fitHeight="100.0" fitWidth="178.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" />
             <JFXButton fx:id="boutonImagePrecedente" prefWidth="33.0" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">

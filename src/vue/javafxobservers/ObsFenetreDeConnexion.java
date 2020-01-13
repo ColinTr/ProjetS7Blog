@@ -19,7 +19,6 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import modele.ModeleDonnees;
 import modele.Utilisateur;
-import org.dom4j.rule.Mode;
 import vue.FenetreDeConnexion;
 
 import java.io.IOException;
@@ -75,8 +74,6 @@ public class ObsFenetreDeConnexion implements Initializable {
 
                 if(utilisateur != null){
 
-                    //On ouvre la fenetre principale :
-
                     Parent root;
                     try {
                         FXMLLoader loader = new FXMLLoader(ObsFenetreDeConnexion.class.getResource("/resources/fenetrePrincipale.fxml"));
@@ -85,7 +82,7 @@ public class ObsFenetreDeConnexion implements Initializable {
 
                         root = loader.load();
 
-                        ModeleDonnees.setObsFenetrePrincipale(loader.getController());
+                        ModeleDonnees.setObsFenetrePrincipale(loader.getController()); //On le set ensuite car avant de faire loader.load() il est null
 
                         Stage stage = new Stage();
                         stage.getIcons().add(new Image(FenetreDeConnexion.class.getResourceAsStream("/resources/images/icon.png")));

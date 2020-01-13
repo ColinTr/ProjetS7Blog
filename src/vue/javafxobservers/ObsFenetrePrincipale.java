@@ -3,7 +3,6 @@ package vue.javafxobservers;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import controleur.ControleurDonnees;
-import controleur.MessageDAO;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -17,15 +16,10 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import modele.Message;
 import modele.ModeleDonnees;
-import modele.MotCle;
-import modele.Utilisateur;
-import org.dom4j.rule.Mode;
 import vue.FenetreDeConnexion;
 
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.*;
 
 public class ObsFenetrePrincipale implements Initializable {
@@ -81,16 +75,14 @@ public class ObsFenetrePrincipale implements Initializable {
 
     public void rafraichirMessages(){
 
-        LocalDate localDate = datePicker.getValue();
+        vboxPrincipale.getChildren().clear();
 
         String[] motCles = null;
         if(fieldMotsCles.getText() != null && !fieldMotsCles.getText().isEmpty()){
             motCles = fieldMotsCles.getText().split(" ");
         }
 
-        vboxPrincipale.getChildren().clear();
-
-        for(Message message : ControleurDonnees.filtrerMessage(motCles, localDate)){
+        for(Message message : ControleurDonnees.filtrerMessage(motCles, datePicker.getValue())){
             Parent root = null;
             try{
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/message.fxml"));

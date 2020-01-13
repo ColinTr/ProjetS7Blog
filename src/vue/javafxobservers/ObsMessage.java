@@ -13,7 +13,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.RowConstraints;
 import javafx.scene.text.Text;
 import modele.*;
 
@@ -32,8 +31,6 @@ public class ObsMessage implements Initializable {
     @FXML private JFXButton boutonLienPrecedent;
     @FXML private JFXButton boutonLienSuivant;
     @FXML private Hyperlink texteLien;
-    @FXML private RowConstraints rowImages;
-    @FXML private RowConstraints rowLiens;
     @FXML private GridPane gridPaneContenuMessage;
     @FXML private GridPane gridPaneImages;
     @FXML private JFXButton boutonImageSuivante;
@@ -44,7 +41,6 @@ public class ObsMessage implements Initializable {
     private int indexLien;
     @FXML private ImageView image;
     private Message messageAffiche;
-
     @FXML private BorderPane borderPaneMessage;
     @FXML private Text texteNom;
     @FXML private Text texteDate;
@@ -71,7 +67,7 @@ public class ObsMessage implements Initializable {
         });
 
         linkModifier.setOnAction(event -> {
-            System.out.println("modifier " + texteTitre);
+            //TODO OUVRIR LA FENETRE DE MODIFICATION D'UN MESSAGE
             event.consume();
         });
 
@@ -130,22 +126,6 @@ public class ObsMessage implements Initializable {
         });
     }
 
-    public void supprimerCommandes(){
-        borderPaneMessage.getChildren().remove(boxCommandes);
-    }
-
-    public void supprimerImages(){
-        gridPaneImages.getChildren().removeAll(boutonImagePrecedente, boutonImageSuivante, image);
-    }
-
-    public void supprimerLiens(){
-        gridPaneImages.getChildren().removeAll(boutonLienPrecedent, boutonLienSuivant, texteLien);
-    }
-
-    public void supprimerMotsCles(){
-        gridPaneContenuMessage.getChildren().remove(textMotCles);
-    }
-
     public void definirMessage(Message message){
         messageAffiche = message;
 
@@ -156,7 +136,11 @@ public class ObsMessage implements Initializable {
 
         images = new ArrayList<>();
         for(modele.Image img : message.getImages()){
-            images.add(new javafx.scene.image.Image(img.getAdresseImage()));
+            try{
+                images.add(new javafx.scene.image.Image(img.getAdresseImage()));
+            } catch(IllegalArgumentException e){
+                //Ne rien faire, impossible d'afficher l'image.
+            }
         }
         this.liens = message.getLiens();
         //Si il y a au moins une image, on l'initialise à la première image :
@@ -178,12 +162,12 @@ public class ObsMessage implements Initializable {
             textMotCles.setText(texteMotCles.toString());
         }
 
-        if(!message.getUtilisateur().getAdresseMail().equals(ModeleDonnees.getUtilisateurConnecte().getAdresseMail())) { supprimerCommandes(); }
+        if(!message.getUtilisateur().getAdresseMail().equals(ModeleDonnees.getUtilisateurConnecte().getAdresseMail())) { borderPaneMessage.getChildren().remove(boxCommandes); }
 
-        if(message.getImages().isEmpty()){ supprimerImages(); }
+        if(message.getImages().isEmpty()){ gridPaneImages.getChildren().removeAll(boutonImagePrecedente, boutonImageSuivante, image); }
 
-        if(message.getLiens().isEmpty()){ supprimerLiens(); }
+        if(message.getLiens().isEmpty()){ gridPaneImages.getChildren().removeAll(boutonLienPrecedent, boutonLienSuivant, texteLien); }
 
-        if(message.getMotCles().isEmpty()){ supprimerMotsCles(); }
+        if(message.getMotCles().isEmpty()){ gridPaneContenuMessage.getChildren().remove(textMotCles); }
     }
 }

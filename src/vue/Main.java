@@ -2,10 +2,7 @@ package vue;
 
 import controleur.Connexion;
 import controleur.UtilisateurDAO;
-import modele.Lien;
-import modele.Message;
-import modele.MotCle;
-import modele.Utilisateur;
+import modele.*;
 
 /**
  * Cette classe permet de créer une base de données de test pré-remplie
@@ -29,9 +26,9 @@ public class Main {
         Message m4 = new Message("titre message 4", loremIpsum, new java.util.Date(System.currentTimeMillis()));
         Message m5 = new Message("titre message 5", loremIpsum, new java.util.Date(System.currentTimeMillis()));
 
-        modele.Image img1 = new modele.Image("https://humancoders-formations.s3.amazonaws.com/uploads/course/logo/93/formation-git-avance.png");
-        modele.Image img2 = new modele.Image("https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/1200px-Octicons-mark-github.svg.png");
-        modele.Image img3 = new modele.Image("https://upload.wikimedia.org/wikipedia/fr/f/fe/SceneBuilderLogo.png");
+        Image img1 = new Image("https://humancoders-formations.s3.amazonaws.com/uploads/course/logo/93/formation-git-avance.png");
+        Image img2 = new Image("https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/1200px-Octicons-mark-github.svg.png");
+        Image img3 = new Image("https://upload.wikimedia.org/wikipedia/fr/f/fe/SceneBuilderLogo.png");
 
         MotCle motCle1 = new MotCle("motCle1");
         MotCle motCle2 = new MotCle("motCle2");

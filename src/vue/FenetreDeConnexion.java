@@ -30,7 +30,6 @@ public class FenetreDeConnexion extends Application {
     @Override
     public void stop(){
         Connexion.close();
-        System.out.println("Stage is closing");
     }
 
 }

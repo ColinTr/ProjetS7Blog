@@ -12,7 +12,6 @@ import javafx.stage.Stage;
 import modele.Image;
 import modele.Lien;
 import modele.ModeleDonnees;
-import modele.Utilisateur;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -69,10 +68,6 @@ public class ObsFenetreCreerMessage  implements Initializable {
         });
 
         boutonPoster.setOnAction(event -> {
-            String titre = fieldTitre.getText();
-            String texte = messageArea.getText();
-            String[] motsCles = fieldMotsCles.getText().split(" ");
-
             List<Image> images = new ArrayList<>();
             for(String adresseImg : imagesObservableList){
                 images.add(new Image(adresseImg));
@@ -83,7 +78,7 @@ public class ObsFenetreCreerMessage  implements Initializable {
                 liens.add(new Lien(lien[1], lien[0]));
             }
 
-            ControleurDonnees.posterMessage(ModeleDonnees.getUtilisateurConnecte(), titre, texte, motsCles, images, liens);
+            ControleurDonnees.posterMessage(ModeleDonnees.getUtilisateurConnecte(), fieldTitre.getText(),  messageArea.getText(), fieldMotsCles.getText().split(" "), images, liens);
 
             ModeleDonnees.getObsFenetrePrincipale().rafraichirMessages();
 
@@ -101,6 +96,9 @@ public class ObsFenetreCreerMessage  implements Initializable {
         });
     }
 
+    /**
+     * Sous classe permettant de créer des cellules avec l'adresse de l'image et le bouton supprimer.
+     */
     static class XCellString extends JFXListCell<String> {
         HBox hbox = new HBox();
         Label label = new Label("");
@@ -109,7 +107,6 @@ public class ObsFenetreCreerMessage  implements Initializable {
 
         public XCellString() {
             super();
-
             hbox.getChildren().addAll(label, pane, button);
             HBox.setHgrow(pane, Priority.ALWAYS);
             button.setOnAction(event -> getListView().getItems().remove(getItem()));
@@ -130,6 +127,7 @@ public class ObsFenetreCreerMessage  implements Initializable {
     }
 
     /**
+     * Sous classe permettant de créer des cellules avec le texte du lien, son adresse et le bouton supprimer.
      * String[0] = Texte du lien
      * String[1] = Adresse du lien
      */
