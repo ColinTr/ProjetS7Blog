@@ -4,6 +4,10 @@ import vue.javafxobservers.ObsFenetrePrincipale;
 
 import java.util.List;
 
+/**
+ * les données de cette classe sont initialisées à la connexion à l'application.
+ * Elles représentent les données de la BDD et sont donc liées à celle ci puisqu'il y a forcément une connexion en cours lorsqu'elles sont initiliasées/modifiées.
+ */
 public final class ModeleDonnees {
     private static Utilisateur utilisateurConnecte;
     private static List<Message> messageList;

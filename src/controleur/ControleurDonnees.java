@@ -9,6 +9,7 @@ import java.util.*;
 public class ControleurDonnees {
 
     public static boolean inscription(String nom, String prenom, String adresse, String mail, String motDePasse){
+        //On vérifie qu'un utilisateur avec la même adresse Email n'existe pas déjà :
         if (UtilisateurDAO.getUtilisateur(mail) == null){
             Utilisateur utilisateur = new Utilisateur(nom,prenom,adresse,mail,UtilisateurDAO.SHA512(motDePasse));
             UtilisateurDAO.ajouterUtilisateur(utilisateur);
@@ -59,7 +60,7 @@ public class ControleurDonnees {
         }
 
         for(String[] lienString : liens){
-            listLiens.add(new Lien(lienString[1], lienString[0]));
+            listLiens.add(new Lien(lienString[0], lienString[1]));
         }
 
         MessageDAO.modifierMessage(message, titre, texteMessage, listMotsCles, listImages, listLiens);
@@ -104,7 +105,7 @@ public class ControleurDonnees {
         }
 
         for(String[] lienString : liens){
-            Lien lien = new Lien(lienString[1], lienString[0]);
+            Lien lien = new Lien(lienString[0], lienString[1]);
             message.addLien(lien);
             lien.setMessage(message);
         }
@@ -135,15 +136,22 @@ public class ControleurDonnees {
      */
     public static List<Message> getMessagesFiltres(String[] motsCles, LocalDate date){
 
+        List<Message> listeMessages;
+
         if(motsCles == null && date == null){
-            return MessageDAO.getAllMessages();
+            listeMessages = MessageDAO.getAllMessages();
         } else if(date == null){
-            return MessageDAO.selectionnerMessages(Arrays.asList(motsCles));
+            listeMessages = MessageDAO.selectionnerMessages(Arrays.asList(motsCles));
         } else if(motsCles == null){
-            return MessageDAO.selectionnerMessages(date);
+            listeMessages = MessageDAO.selectionnerMessages(date);
         } else{
-            return MessageDAO.selectionnerMessages(Arrays.asList(motsCles), date);
+            listeMessages = MessageDAO.selectionnerMessages(Arrays.asList(motsCles), date);
         }
+
+        //On inverse pour afficher les messages les plus récents d'abord :
+        Collections.reverse(listeMessages);
+
+        return listeMessages;
 
     }
 

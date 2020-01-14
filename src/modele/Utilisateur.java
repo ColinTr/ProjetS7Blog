@@ -39,7 +39,6 @@ public class Utilisateur {
         messages.remove(m);
     }
 
-
     //========================== Getters ==========================
 
     public List<Message> getMessages(){

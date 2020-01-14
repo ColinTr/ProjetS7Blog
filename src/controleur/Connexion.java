@@ -18,12 +18,11 @@ public abstract class Connexion {
             em = emf.createEntityManager();
             return true;
         } catch(PersistenceException a){
-            System.out.println("Dab");
             return false;
         }
     }
 
-    public static void init(String mode, String url, String user, String password){
+    public static boolean init(String mode, String url, String user, String password){
         Map<String, String> properties = new HashMap<>();
         properties.put("javax.persistence.jdbc.url", url);
         properties.put("javax.persistence.jdbc.user", user);
@@ -31,15 +30,12 @@ public abstract class Connexion {
         try{
             emf = Persistence.createEntityManagerFactory(mode,properties);
             em = emf.createEntityManager();
-
-
+            return true;
         }
         catch(PersistenceException e){
-
+            return false;
         }
-
     }
-
 
     public static void close(){
         em.close();

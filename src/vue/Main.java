@@ -1,14 +1,9 @@
 package vue;
 
 import controleur.Connexion;
-import controleur.MessageDAO;
-import controleur.MotCleDAO;
 import controleur.UtilisateurDAO;
 import modele.*;
 
-import javax.persistence.Query;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 
 /**

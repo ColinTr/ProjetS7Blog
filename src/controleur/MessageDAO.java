@@ -11,7 +11,6 @@ import java.util.List;
 
 import modele.MotCle;
 
-
 public class MessageDAO {
 
     public static List<Message> getAllMessages(){

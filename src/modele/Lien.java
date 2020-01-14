@@ -15,6 +15,8 @@ public class Lien {
     private Message message;
 
     public Lien() {
+        adresseLien = "";
+        texteLien = "";
     }
 
     public Lien(String adresseLien, String texteLien) {

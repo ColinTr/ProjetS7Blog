@@ -32,13 +32,13 @@ public class ObsFenetreModifierMessage implements Initializable {
     @FXML private JFXButton boutonAjouterImage;
     @FXML private TextField fieldAdresseImage;
     @FXML private JFXListView<String> imagesListView;
-    private static ObservableList<String> imagesObservableList = FXCollections.observableArrayList();
+    private static ObservableList<String> imagesObservableList;
     @FXML private JFXButton boutonAjouterLien;
     private Message messageAffiche;
     @FXML private TextField fieldTexteLien;
     @FXML private TextField fieldAdresseLien;
     @FXML private JFXListView<String[]> liensListView;
-    private static ObservableList<String[]> liensObservableList = FXCollections.observableArrayList();
+    private static ObservableList<String[]> liensObservableList;
     @FXML private JFXButton boutonPoster;
     @FXML private JFXButton boutonAnnuler;
 
@@ -48,6 +48,8 @@ public class ObsFenetreModifierMessage implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        imagesObservableList = FXCollections.observableArrayList();
+        liensObservableList = FXCollections.observableArrayList();
 
         //On pré-remplit donc les données à partir du message à afficher :
         fieldTitre.setText(messageAffiche.getTitre());
@@ -106,7 +108,7 @@ public class ObsFenetreModifierMessage implements Initializable {
             if(!fieldCheminFichier.getText().isEmpty()){
 
                 String cheminSurServeur = TCPClient.uploadImage(fieldCheminFichier.getText());
-                System.out.println(cheminSurServeur);
+
                 imagesObservableList.add(cheminSurServeur);
 
                 fieldCheminFichier.setText(null);

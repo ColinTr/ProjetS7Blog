@@ -53,7 +53,7 @@ public class TCPServeur {
                 } while(count != -1 && dataReceived < fileSize);
                 fileOutputStream.close();
 
-                out.write(path.getBytes());
+                out.write(("file:\\" + path).getBytes());
 
                 in.close();
                 out.close();

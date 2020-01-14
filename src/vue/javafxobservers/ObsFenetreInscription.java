@@ -46,7 +46,5 @@ public class ObsFenetreInscription implements Initializable {
 
             event.consume();
         });
-
     }
-
 }

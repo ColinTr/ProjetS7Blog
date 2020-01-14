@@ -28,12 +28,12 @@ public class ObsFenetreCreerMessage  implements Initializable {
     @FXML private JFXButton boutonAjouterImage;
     @FXML private TextField fieldAdresseImage;
     @FXML private JFXListView<String> imagesListView;
-    private static ObservableList<String> imagesObservableList = FXCollections.observableArrayList();
+    private static ObservableList<String> imagesObservableList;
     @FXML private JFXButton boutonAjouterLien;
     @FXML private TextField fieldTexteLien;
     @FXML private TextField fieldAdresseLien;
     @FXML private JFXListView<String[]> liensListView;
-    private static ObservableList<String[]> liensObservableList = FXCollections.observableArrayList();
+    private static ObservableList<String[]> liensObservableList;
     @FXML private JFXButton boutonPoster;
     @FXML private JFXButton boutonAnnuler;
 
@@ -43,6 +43,9 @@ public class ObsFenetreCreerMessage  implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        imagesObservableList = FXCollections.observableArrayList();
+        liensObservableList = FXCollections.observableArrayList();
+
         imagesListView.setCellFactory(param -> new XCellString());
         imagesListView.setItems(imagesObservableList);
 

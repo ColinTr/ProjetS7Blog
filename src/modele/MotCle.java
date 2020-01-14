@@ -19,12 +19,12 @@ public class MotCle {
     private List<Message> messages;
 
     public MotCle() {
-        messages = new ArrayList<Message>();
+        messages = new ArrayList<>();
     }
 
     public MotCle(String motCle) {
         this.motCle = motCle;
-        messages = new ArrayList<Message>();
+        messages = new ArrayList<>();
     }
 
     public String getMotCle() { return motCle; }

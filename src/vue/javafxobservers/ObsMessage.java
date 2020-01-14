@@ -181,6 +181,8 @@ public class ObsMessage implements Initializable {
             textMotCles.setText(texteMotCles.toString());
         }
 
+        //On supprime certains éléments du message lorsqu'ils sont vides :
+
         if(!message.getUtilisateur().getAdresseMail().equals(ModeleDonnees.getUtilisateurConnecte().getAdresseMail())) { borderPaneMessage.getChildren().remove(boxCommandes); }
 
         if(message.getImages().isEmpty()){ gridPaneImages.getChildren().removeAll(boutonImagePrecedente, boutonImageSuivante, image); }
