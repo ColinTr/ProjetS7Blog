@@ -27,7 +27,6 @@ public class ControleurDonnees {
      */
     public static void supprimerMessage(Message message){
         MessageDAO.supprimerMessage(message);
-        System.out.println(ModeleDonnees.getMessageList().indexOf(message));
         ModeleDonnees.getMessageList().remove(message);
     }
 

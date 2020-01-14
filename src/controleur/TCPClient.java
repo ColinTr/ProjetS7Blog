@@ -10,11 +10,6 @@ public class TCPClient {
     private final static String serverIP = "127.0.0.1";
     private final static int serverPort = 4444;
 
-    //Doit être remove
-    public static void main( String[] args ) {
-        System.out.println(TCPClient.uploadImage("C:\\Users\\GuillaumeBouchard\\Desktop\\a.jpg"));
-    }
-
     public static String uploadImage(String chemin){
         // On va définir un protocole qui est le suivant :
         // - taille du nom du fichier sur 4 octets
