@@ -32,6 +32,27 @@ public class ControleurDonnees {
     }
 
     /**
+     * Cette méthode permet de modifier un message déjà posté.
+     * @param message Le message à modifier.
+     * @param titre Le nouveau titre.
+     * @param texteMessage Le nouveau texte.
+     * @param motsCles Les nouveaux mots-clés.
+     * @param images Les nouvelles images.
+     * @param liens les nouveaux liens.
+     */
+    public static void modifierMessage(Message message, String titre, String texteMessage, String[] motsCles, List<Image> images, List<Lien> liens){
+        MessageDAO.modifierMessage(message, titre, texteMessage, motsCles, images, liens);
+        int indexMessage = ModeleDonnees.getMessageList().indexOf(message);
+        if(indexMessage != -1){
+            ModeleDonnees.getMessageList().get(indexMessage).setTitre(titre);
+            ModeleDonnees.getMessageList().get(indexMessage).setTexte(texteMessage);
+            ModeleDonnees.getMessageList().get(indexMessage).setTitre(titre);
+            ModeleDonnees.getMessageList().get(indexMessage).setTitre(titre);
+            ModeleDonnees.getMessageList().get(indexMessage).setTitre(titre);
+        }
+    }
+
+    /**
      * Cette méthode permet de poster un message à la date actuelle.
      * Elle ajoute le message à la BDD ET au modèle de données de l'application.
      * @param utilisateur L'utilisateur qui poste le message
@@ -70,6 +91,11 @@ public class ControleurDonnees {
         ModeleDonnees.getMessageList().add(message);
     }
 
+    /**
+     * Cette méthode permet au lancement de charger la liste de toutes les données affichées à partir de la BDD.
+     * @param obsFenetrePrincipale La fenetre principale.
+     * @param utilisateurConnecte L'utilisateur connecté.
+     */
     public static void initialiserDonnees(ObsFenetrePrincipale obsFenetrePrincipale, Utilisateur utilisateurConnecte){
         ModeleDonnees.setObsFenetrePrincipale(obsFenetrePrincipale);
         ModeleDonnees.setUtilisateurConnecte(utilisateurConnecte);

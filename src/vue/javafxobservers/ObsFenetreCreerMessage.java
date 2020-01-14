@@ -21,22 +21,18 @@ import java.util.ResourceBundle;
 public class ObsFenetreCreerMessage  implements Initializable {
     @FXML private GridPane gridPaneImages;
     @FXML private TabPane tabPanePrincipal;
-
     @FXML private JFXTextField fieldTitre;
     @FXML private JFXTextArea messageArea;
     @FXML private JFXTextField fieldMotsCles;
-
     @FXML private JFXButton boutonAjouterImage;
     @FXML private TextField fieldAdresseImage;
     @FXML private JFXListView<String> imagesListView;
     private static ObservableList<String> imagesObservableList = FXCollections.observableArrayList();
-
     @FXML private JFXButton boutonAjouterLien;
     @FXML private TextField fieldTexteLien;
     @FXML private TextField fieldAdresseLien;
     @FXML private JFXListView<String[]> liensListView;
     private static ObservableList<String[]> liensObservableList = FXCollections.observableArrayList();
-
     @FXML private JFXButton boutonPoster;
     @FXML private JFXButton boutonAnnuler;
 
@@ -54,7 +50,6 @@ public class ObsFenetreCreerMessage  implements Initializable {
                 fieldTexteLien.setText(null);
                 fieldAdresseLien.setText(null);
             }
-
             event.consume();
         });
 
@@ -63,7 +58,6 @@ public class ObsFenetreCreerMessage  implements Initializable {
                 imagesObservableList.add(fieldAdresseImage.getText());
                 fieldAdresseImage.setText(null);
             }
-
             event.consume();
         });
 
@@ -91,7 +85,6 @@ public class ObsFenetreCreerMessage  implements Initializable {
         boutonAnnuler.setOnAction(event -> {
             Stage stage = (Stage) boutonAnnuler.getScene().getWindow();
             stage.close();
-
             event.consume();
         });
     }

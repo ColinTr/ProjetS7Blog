@@ -3,7 +3,10 @@ package vue.javafxobservers;
 import com.jfoenix.controls.JFXButton;
 import controleur.ControleurDonnees;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Hyperlink;
@@ -14,7 +17,9 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import modele.*;
+import vue.FenetreDeConnexion;
 
 import java.awt.*;
 import java.io.IOException;
@@ -67,7 +72,21 @@ public class ObsMessage implements Initializable {
         });
 
         linkModifier.setOnAction(event -> {
-            //TODO OUVRIR LA FENETRE DE MODIFICATION D'UN MESSAGE
+            Parent root;
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fenetreCreerMessage.fxml"));
+                ObsFenetreModifierMessage obs = new ObsFenetreModifierMessage(messageAffiche);
+                loader.setController(obs);
+                root = loader.load();
+                Stage stage = new Stage();
+                stage.getIcons().add(new Image(FenetreDeConnexion.class.getResourceAsStream("/resources/images/icon.png")));
+                stage.setTitle("Modifier un nouveau message");
+                stage.setScene(new Scene(root));
+                stage.show();
+            }
+            catch (IOException e) {
+                e.printStackTrace();
+            }
             event.consume();
         });
 

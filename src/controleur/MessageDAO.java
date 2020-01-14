@@ -1,5 +1,7 @@
 package controleur;
 
+import modele.Image;
+import modele.Lien;
 import modele.Message;
 
 import javax.persistence.Query;
@@ -50,7 +52,7 @@ public class MessageDAO {
         }
     }
 
-    public static boolean modifierMessage(){
+    public static boolean modifierMessage(Message message, String titre, String texteMessage, String[] motsCles, List<Image> images, List<Lien> liens){
         //TODO
         return true;
     }

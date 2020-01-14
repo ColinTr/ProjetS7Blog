@@ -47,38 +47,27 @@ public class Message {
         motCles = new ArrayList<>();
     }
 
-    //Accesseurs
-    public String getTitre() {
-        return titre;
-    }
+    //Accesseurs en lecture :
+    public String getTitre() { return titre; }
 
-    public void setTitre(String titre) {
-        this.titre = titre;
-    }
+    public String getTexte() { return texte; }
 
-    public String getTexte() {
-        return texte;
-    }
+    public Date getDate() { return date; }
 
-    public void setTexte(String texte) {
-        this.texte = texte;
-    }
+    public Utilisateur getUtilisateur() { return utilisateur; }
 
-    public Date getDate() {
-        return date;
-    }
+    //Accesseurs en écriture :
+    public void setTitre(String titre) { this.titre = titre; }
 
-    public void setDate(Date date) {
-        this.date = date;
-    }
+    public void setTexte(String texte) { this.texte = texte; }
 
-    public Utilisateur getUtilisateur() {
-        return utilisateur;
-    }
+    public void setUtilisateur(Utilisateur utilisateur) { this.utilisateur = utilisateur; }
 
-    public void setUtilisateur(Utilisateur utilisateur) {
-        this.utilisateur = utilisateur;
-    }
+    public void setImages(List<Image> images) { this.images = images; }
+
+    public void setLiens(List<Lien> liens) { this.liens = liens; }
+
+    public void setMotCles(List<MotCle> motCles) { this.motCles = motCles; }
 
     //Image
     public List<Image> getImages(){

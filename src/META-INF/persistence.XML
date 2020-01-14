@@ -26,6 +26,7 @@
             <property name="javax.persistence.jdbc.user" value="root" />
             <property name="javax.persistence.jdbc.password" value="" />
 
+            <!-- Le mode "classique" est destiné à la production, on ne met donc pas de valeur à hbm2ddl.auto pour gagner du temps à chaque requête -->
             <!-- <property name="hibernate.hbm2ddl.auto" value="update" /> -->
 
             <property name="hibernate.connection.pool_size" value="2" />

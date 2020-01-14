@@ -48,7 +48,6 @@ public class ObsFenetrePrincipale implements Initializable {
 
         boutonChercher.setOnAction(event -> {
             rafraichirMessages();
-
             event.consume();
         });
 
@@ -56,6 +55,8 @@ public class ObsFenetrePrincipale implements Initializable {
             Parent root;
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fenetreCreerMessage.fxml"));
+                ObsFenetreCreerMessage obs = new ObsFenetreCreerMessage();
+                loader.setController(obs);
                 root = loader.load();
                 Stage stage = new Stage();
                 stage.getIcons().add(new Image(FenetreDeConnexion.class.getResourceAsStream("/resources/images/icon.png")));
