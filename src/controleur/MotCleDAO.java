@@ -1,7 +1,5 @@
 package controleur;
 
-import modele.Message;
-import modele.ModeleDonnees;
 import modele.MotCle;
 
 import javax.persistence.Query;
@@ -25,7 +23,10 @@ public class MotCleDAO {
     public static List<MotCle> getAllMotsCles() {
         List<MotCle> listeARetourner = new ArrayList<>();
 
-        Query query = Connexion.getEntityManager().createQuery("SELECT m FROM MotCle m");
+        String queryString = "SELECT m FROM MotCle m";
+
+        Query query = Connexion.getEntityManager().createQuery(queryString);
+
         List results = query.getResultList();
 
         for(Object o : results){

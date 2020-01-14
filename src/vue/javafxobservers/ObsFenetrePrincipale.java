@@ -83,7 +83,7 @@ public class ObsFenetrePrincipale implements Initializable {
             motCles = fieldMotsCles.getText().split(" ");
         }
 
-        for(Message message : ControleurDonnees.filtrerMessage(motCles, datePicker.getValue())){
+        for(Message message : ControleurDonnees.getMessagesFiltres(motCles,  datePicker.getValue())){
             Parent root = null;
             try{
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/message.fxml"));

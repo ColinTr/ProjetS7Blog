@@ -14,7 +14,10 @@ public class UtilisateurDAO {
     public static List<Utilisateur> getAllUtilisateur(){
         List<Utilisateur> listeARetourner = new ArrayList<>();
 
-        Query query = Connexion.getEntityManager().createQuery("SELECT u FROM Utilisateur u");
+        String queryString = "SELECT u FROM Utilisateur u";
+
+        Query query = Connexion.getEntityManager().createQuery(queryString);
+
         List results = query.getResultList();
 
         for(Object o : results){
@@ -63,7 +66,12 @@ public class UtilisateurDAO {
     public static Utilisateur testerAuthentification(String adresseMail, String mdPasse){
         Utilisateur utilisateur = null;
 
-        Query query = Connexion.getEntityManager().createQuery("SELECT u FROM Utilisateur u WHERE u.motDePasse = '" + SHA512(mdPasse) + "' AND u.adresseMail = '" + adresseMail + "'");
+        String queryString = "SELECT u FROM Utilisateur u WHERE u.motDePasse = :mdp AND u.adresseMail = :mail ";
+
+        Query query = Connexion.getEntityManager().createQuery(queryString);
+
+        query.setParameter("mdp", SHA512(mdPasse));
+        query.setParameter("mail", adresseMail);
 
         List results = query.getResultList();
 
