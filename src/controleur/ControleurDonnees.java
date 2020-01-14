@@ -40,15 +40,38 @@ public class ControleurDonnees {
      * @param images Les nouvelles images.
      * @param liens les nouveaux liens.
      */
-    public static void modifierMessage(Message message, String titre, String texteMessage, String[] motsCles, List<Image> images, List<Lien> liens){
-        MessageDAO.modifierMessage(message, titre, texteMessage, motsCles, images, liens);
+    public static void modifierMessage(Message message, String titre, String texteMessage, List<String> motsCles, List<String> images, List<String[]> liens){
+        //On construit les listes d'objets mots-clés, images et liens ici :
+        List<MotCle> listMotsCles = new ArrayList<>();
+        List<Image> listImages = new ArrayList<>();
+        List<Lien> listLiens = new ArrayList<>();
+
+        for(String motCleString : motsCles) {
+            MotCle motCle = new MotCle(motCleString);
+            //Si le mot-clé n'existait pas avant, on l'ajoute à la liste locale et à la BDD :
+            if(!ModeleDonnees.getMotCleList().contains(motCle)){
+                MotCleDAO.ajouterMotCle(motCle);
+                ModeleDonnees.getMotCleList().add(motCle);
+            }
+            listMotsCles.add(motCle);
+        }
+
+        for(String imageString : images){
+            listImages.add(new Image(imageString));
+        }
+
+        for(String[] lienString : liens){
+            listLiens.add(new Lien(lienString[1], lienString[0]));
+        }
+
+        MessageDAO.modifierMessage(message, titre, texteMessage, listMotsCles, listImages, listLiens);
         int indexMessage = ModeleDonnees.getMessageList().indexOf(message);
         if(indexMessage != -1){
             ModeleDonnees.getMessageList().get(indexMessage).setTitre(titre);
             ModeleDonnees.getMessageList().get(indexMessage).setTexte(texteMessage);
-            ModeleDonnees.getMessageList().get(indexMessage).setTitre(titre);
-            ModeleDonnees.getMessageList().get(indexMessage).setTitre(titre);
-            ModeleDonnees.getMessageList().get(indexMessage).setTitre(titre);
+            ModeleDonnees.getMessageList().get(indexMessage).setMotCles(listMotsCles);
+            ModeleDonnees.getMessageList().get(indexMessage).setImages(listImages);
+            ModeleDonnees.getMessageList().get(indexMessage).setLiens(listLiens);
         }
     }
 
@@ -62,7 +85,7 @@ public class ControleurDonnees {
      * @param images Les images associées au message
      * @param liens Les liens associés au message
      */
-    public static void posterMessage(Utilisateur utilisateur, String titre, String texteMessage, String[] motsCles, List<Image> images, List<Lien> liens){
+    public static void posterMessage(Utilisateur utilisateur, String titre, String texteMessage, List<String> motsCles, List<String> images, List<String[]> liens){
         Date dateDeCreation = new Date(System.currentTimeMillis());
 
         Message message = new Message(titre, texteMessage, dateDeCreation);
@@ -70,18 +93,20 @@ public class ControleurDonnees {
         message.setUtilisateur(utilisateur);
         utilisateur.addMessage(message);
 
-        for(String motCle : motsCles){
-            MotCle mc = new MotCle(motCle);
-            message.addMotCle(mc);
-            mc.ajouterMessage(message);
+        for(String motCleString : motsCles){
+            MotCle motCle = new MotCle(motCleString);
+            message.addMotCle(motCle);
+            motCle.ajouterMessage(message);
         }
 
-        for(Image image : images){
+        for(String imageString : images){
+            Image image = new Image(imageString);
             message.addImage(image);
             image.setMessage(message);
         }
 
-        for(Lien lien : liens){
+        for(String[] lienString : liens){
+            Lien lien = new Lien(lienString[1], lienString[0]);
             message.addLien(lien);
             lien.setMessage(message);
         }

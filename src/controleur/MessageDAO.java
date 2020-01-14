@@ -52,9 +52,8 @@ public class MessageDAO {
         }
     }
 
-    public static boolean modifierMessage(Message message, String titre, String texteMessage, String[] motsCles, List<Image> images, List<Lien> liens){
+    public static void modifierMessage(Message message, String titre, String texteMessage, List<MotCle> motsCles, List<Image> images, List<Lien> liens){
         //TODO
-        return true;
     }
 
     public static List<Message> recupererMessagesAUneDateDonnee(java.util.Date date){

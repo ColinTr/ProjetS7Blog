@@ -82,17 +82,22 @@ public class ObsFenetreModifierMessage implements Initializable {
         });
 
         boutonPoster.setOnAction(event -> {
-            List<Image> images = new ArrayList<>();
+            List<String> motsCles = new ArrayList<>();
+            for(String motCle : fieldMotsCles.getText().split(" ")){
+                motsCles.add(motCle);
+            }
+
+            List<String> images = new ArrayList<>();
             for(String adresseImg : imagesObservableList){
-                images.add(new Image(adresseImg));
+                images.add(adresseImg);
             }
 
-            List<Lien> liens = new ArrayList<>();
+            List<String[]> liens = new ArrayList<>();
             for(String[] lien : liensObservableList){
-                liens.add(new Lien(lien[1], lien[0]));
+                liens.add(new String[]{lien[1], lien[0]});
             }
 
-            ControleurDonnees.posterMessage(ModeleDonnees.getUtilisateurConnecte(), fieldTitre.getText(),  messageArea.getText(), fieldMotsCles.getText().split(" "), images, liens);
+            ControleurDonnees.modifierMessage(messageAffiche, fieldTitre.getText(), messageArea.getText(), motsCles, images, liens);
 
             ModeleDonnees.getObsFenetrePrincipale().rafraichirMessages();
 
