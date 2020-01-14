@@ -70,6 +70,10 @@ public class Main {
         m4.setUtilisateur(azer);
         m5.setUtilisateur(colin);
 
+        Connexion.getEntityManager().persist(motCle1);
+        Connexion.getEntityManager().persist(motCle2);
+        Connexion.getEntityManager().persist(motCle3);
+
         Connexion.getEntityManager().persist(m1);
         Connexion.getEntityManager().persist(m2);
         Connexion.getEntityManager().persist(m3);

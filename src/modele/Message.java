@@ -26,7 +26,7 @@ public class Message {
     @OneToMany(mappedBy = "message", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Lien> liens;
 
-    @ManyToMany(mappedBy = "messages", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "messages", fetch = FetchType.LAZY) //Si on supprime une image, on ne veut pas supprimer les mots clés
     private List<MotCle> motCles;
 
     @ManyToOne(fetch = FetchType.LAZY) //On ne met pas CascadeType.ALL car lorsqu'on supprime un message on ne veut pas supprimer son utilisateur

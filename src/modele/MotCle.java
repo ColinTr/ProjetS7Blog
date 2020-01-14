@@ -18,9 +18,7 @@ public class MotCle {
                     referencedColumnName="idMessage")})
     private List<Message> messages;
 
-    public MotCle() {
-        messages = new ArrayList<>();
-    }
+    public MotCle() { messages = new ArrayList<>(); }
 
     public MotCle(String motCle) {
         this.motCle = motCle;

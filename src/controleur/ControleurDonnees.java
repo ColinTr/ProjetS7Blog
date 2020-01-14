@@ -27,6 +27,7 @@ public class ControleurDonnees {
      */
     public static void supprimerMessage(Message message){
         MessageDAO.supprimerMessage(message);
+        System.out.println(ModeleDonnees.getMessageList().indexOf(message));
         ModeleDonnees.getMessageList().remove(message);
     }
 
@@ -45,14 +46,20 @@ public class ControleurDonnees {
         List<Image> listImages = new ArrayList<>();
         List<Lien> listLiens = new ArrayList<>();
 
-        for(String motCleString : motsCles) {
+        for(String motCleString : motsCles){
+
             MotCle motCle = MotCleDAO.getMotCle(motCleString);
             if (motCle==null){
                 motCle = new MotCle(motCleString);
+                message.addMotCle(motCle);
+                motCle.ajouterMessage(message);
                 MotCleDAO.ajouterMotCle(motCle);
                 ModeleDonnees.getMotCleList().add(motCle);
             }
-            listMotsCles.add(motCle);
+            else{
+                message.addMotCle(motCle);
+                motCle.ajouterMessage(message);
+            }
         }
 
         for(String imageString : images){
@@ -91,11 +98,15 @@ public class ControleurDonnees {
             MotCle motCle = MotCleDAO.getMotCle(motCleString);
             if (motCle==null){
                 motCle = new MotCle(motCleString);
+                message.addMotCle(motCle);
+                motCle.ajouterMessage(message);
                 MotCleDAO.ajouterMotCle(motCle);
                 ModeleDonnees.getMotCleList().add(motCle);
             }
-            message.addMotCle(motCle);
-            motCle.ajouterMessage(message);
+            else{
+                message.addMotCle(motCle);
+                motCle.ajouterMessage(message);
+            }
         }
 
         for(String imageString : images){
@@ -152,7 +163,6 @@ public class ControleurDonnees {
         Collections.reverse(listeMessages);
 
         return listeMessages;
-
     }
 
     /**

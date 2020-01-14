@@ -8,7 +8,7 @@ import java.util.List;
 public class Utilisateur {
 
     @Id
-    private String adresseMail;
+    private String adresseMail; //Puisque l'Email sert à se connecter, il est unique et convient comme clé primaire
 
     private String nom;
     private String prenom;
@@ -18,9 +18,7 @@ public class Utilisateur {
     @OneToMany(mappedBy = "utilisateur", cascade = CascadeType.ALL, fetch = FetchType.LAZY) //CascadeType.ALL car on veut supprimer tous les messages d'un utilisateur lorsqu'on le supprime
     private List<Message> messages;
 
-    public Utilisateur() {
-        messages = new ArrayList<>();
-    }
+    public Utilisateur() { messages = new ArrayList<>(); }
 
     public Utilisateur(String nom, String prenom, String adresse, String mail, String motDePasse) {
         this.nom = nom;
@@ -35,19 +33,13 @@ public class Utilisateur {
         messages.add(m);
     }
 
-    public void removeMessage(Message m){
-        messages.remove(m);
-    }
+    public void removeMessage(Message m){ messages.remove(m); }
 
     //========================== Getters ==========================
 
-    public List<Message> getMessages(){
-        return messages;
-    }
+    public List<Message> getMessages(){ return messages; }
 
-    public Message getMessage(int i){
-        return messages.get(i);
-    }
+    public Message getMessage(int i){ return messages.get(i); }
 
     public String getNom() { return nom; }
 
