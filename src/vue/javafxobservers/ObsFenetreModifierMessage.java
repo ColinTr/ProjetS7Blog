@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import controleur.ControleurDonnees;
+import controleur.TCPClient;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -12,9 +13,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import modele.*;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -81,6 +84,32 @@ public class ObsFenetreModifierMessage implements Initializable {
             if(!fieldAdresseImage.getText().isEmpty()){
                 imagesObservableList.add(fieldAdresseImage.getText());
                 fieldAdresseImage.setText(null);
+            }
+            event.consume();
+        });
+
+        boutonStartFileChooser.setOnAction(event -> {
+            FileChooser fileChooser = new FileChooser();
+
+            //On filtre les images en .jpg et .png seulement
+            FileChooser.ExtensionFilter extFilterJPG = new FileChooser.ExtensionFilter("JPG files (*.jpg)", "*.JPG");
+            FileChooser.ExtensionFilter extFilterPNG = new FileChooser.ExtensionFilter("PNG files (*.png)", "*.PNG");
+            fileChooser.getExtensionFilters().addAll(extFilterJPG, extFilterPNG);
+
+            //On affiche le fileChooser
+            File file = fileChooser.showOpenDialog(null);
+            fieldCheminFichier.setText(file.getAbsolutePath());
+            event.consume();
+        });
+
+        boutonAjouterImageFileChooser.setOnAction(event -> {
+            if(!fieldCheminFichier.getText().isEmpty()){
+
+                String cheminSurServeur = TCPClient.uploadImage(fieldCheminFichier.getText());
+                System.out.println(cheminSurServeur);
+                imagesObservableList.add(cheminSurServeur);
+
+                fieldCheminFichier.setText(null);
             }
             event.consume();
         });
