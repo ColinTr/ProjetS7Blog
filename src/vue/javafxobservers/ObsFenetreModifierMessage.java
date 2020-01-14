@@ -39,6 +39,10 @@ public class ObsFenetreModifierMessage implements Initializable {
     @FXML private JFXButton boutonPoster;
     @FXML private JFXButton boutonAnnuler;
 
+    @FXML private JFXButton boutonAjouterImageFileChooser;
+    @FXML private JFXButton boutonStartFileChooser;
+    @FXML private TextField fieldCheminFichier;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 

@@ -2,17 +2,20 @@ package vue.javafxobservers;
 
 import com.jfoenix.controls.*;
 import controleur.ControleurDonnees;
+import controleur.TCPClient;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import modele.Image;
 import modele.Lien;
 import modele.ModeleDonnees;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +39,10 @@ public class ObsFenetreCreerMessage  implements Initializable {
     @FXML private JFXButton boutonPoster;
     @FXML private JFXButton boutonAnnuler;
 
+    @FXML private JFXButton boutonAjouterImageFileChooser;
+    @FXML private JFXButton boutonStartFileChooser;
+    @FXML private TextField fieldCheminFichier;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         imagesListView.setCellFactory(param -> new XCellString());
@@ -57,6 +64,32 @@ public class ObsFenetreCreerMessage  implements Initializable {
             if(!fieldAdresseImage.getText().isEmpty()){
                 imagesObservableList.add(fieldAdresseImage.getText());
                 fieldAdresseImage.setText(null);
+            }
+            event.consume();
+        });
+
+        boutonStartFileChooser.setOnAction(event -> {
+            FileChooser fileChooser = new FileChooser();
+
+            //On filtre les images en .jpg et .png seulement
+            FileChooser.ExtensionFilter extFilterJPG = new FileChooser.ExtensionFilter("JPG files (*.jpg)", "*.JPG");
+            FileChooser.ExtensionFilter extFilterPNG = new FileChooser.ExtensionFilter("PNG files (*.png)", "*.PNG");
+            fileChooser.getExtensionFilters().addAll(extFilterJPG, extFilterPNG);
+
+            //On affiche le fileChooser
+            File file = fileChooser.showOpenDialog(null);
+            fieldCheminFichier.setText(file.getAbsolutePath());
+            event.consume();
+        });
+
+        boutonAjouterImageFileChooser.setOnAction(event -> {
+            if(!fieldCheminFichier.getText().isEmpty()){
+
+                String cheminSurServeur = TCPClient.uploadImage(fieldCheminFichier.getText());
+                System.out.println(cheminSurServeur);
+                imagesObservableList.add(cheminSurServeur);
+
+                fieldCheminFichier.setText(null);
             }
             event.consume();
         });
