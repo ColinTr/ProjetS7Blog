@@ -11,8 +11,6 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import modele.Image;
-import modele.Lien;
 import modele.ModeleDonnees;
 
 import java.io.File;
@@ -86,7 +84,6 @@ public class ObsFenetreCreerMessage  implements Initializable {
             if(!fieldCheminFichier.getText().isEmpty()){
 
                 String cheminSurServeur = TCPClient.uploadImage(fieldCheminFichier.getText());
-                System.out.println(cheminSurServeur);
                 imagesObservableList.add(cheminSurServeur);
 
                 fieldCheminFichier.setText(null);
