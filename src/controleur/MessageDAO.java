@@ -52,8 +52,20 @@ public class MessageDAO {
         }
     }
 
-    public static void modifierMessage(Message message, String titre, String texteMessage, List<MotCle> motsCles, List<Image> images, List<Lien> liens){
-        //TODO
+    public static boolean modifierMessage(Message message, String titre, String texteMessage, List<MotCle> motsCles, List<Image> images, List<Lien> liens){
+        Connexion.beginTransaction();
+        try{
+            message.setTitre(titre);
+            message.setTexte(texteMessage);
+            message.setMotCles(motsCles);
+            message.setImages(images);
+            message.setLiens(liens);
+            Connexion.commitTransaction();
+            return true;
+        } catch (Exception e){
+            Connexion.rollbackTransaction();
+            return false;
+        }
     }
 
     public static List<Message> recupererMessagesAUneDateDonnee(java.util.Date date){

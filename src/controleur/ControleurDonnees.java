@@ -47,9 +47,9 @@ public class ControleurDonnees {
         List<Lien> listLiens = new ArrayList<>();
 
         for(String motCleString : motsCles) {
-            MotCle motCle = new MotCle(motCleString);
-            //Si le mot-clé n'existait pas avant, on l'ajoute à la liste locale et à la BDD :
-            if(!ModeleDonnees.getMotCleList().contains(motCle)){
+            MotCle motCle = MotCleDAO.getMotCle(motCleString);
+            if (motCle==null){
+                motCle = new MotCle(motCleString);
                 MotCleDAO.ajouterMotCle(motCle);
                 ModeleDonnees.getMotCleList().add(motCle);
             }
@@ -65,6 +65,7 @@ public class ControleurDonnees {
         }
 
         MessageDAO.modifierMessage(message, titre, texteMessage, listMotsCles, listImages, listLiens);
+        /*
         int indexMessage = ModeleDonnees.getMessageList().indexOf(message);
         if(indexMessage != -1){
             ModeleDonnees.getMessageList().get(indexMessage).setTitre(titre);
@@ -73,6 +74,8 @@ public class ControleurDonnees {
             ModeleDonnees.getMessageList().get(indexMessage).setImages(listImages);
             ModeleDonnees.getMessageList().get(indexMessage).setLiens(listLiens);
         }
+         */
+        ModeleDonnees.getObsFenetrePrincipale().rafraichirMessages();
     }
 
     /**
@@ -94,7 +97,13 @@ public class ControleurDonnees {
         utilisateur.addMessage(message);
 
         for(String motCleString : motsCles){
-            MotCle motCle = new MotCle(motCleString);
+
+            MotCle motCle = MotCleDAO.getMotCle(motCleString);
+            if (motCle==null){
+                motCle = new MotCle(motCleString);
+                MotCleDAO.ajouterMotCle(motCle);
+                ModeleDonnees.getMotCleList().add(motCle);
+            }
             message.addMotCle(motCle);
             motCle.ajouterMessage(message);
         }

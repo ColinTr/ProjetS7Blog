@@ -1,6 +1,7 @@
 package vue;
 
 import controleur.Connexion;
+import controleur.MotCleDAO;
 import controleur.UtilisateurDAO;
 import modele.*;
 

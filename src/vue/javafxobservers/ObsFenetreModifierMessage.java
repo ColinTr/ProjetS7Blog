@@ -84,7 +84,9 @@ public class ObsFenetreModifierMessage implements Initializable {
         boutonPoster.setOnAction(event -> {
             List<String> motsCles = new ArrayList<>();
             for(String motCle : fieldMotsCles.getText().split(" ")){
-                motsCles.add(motCle);
+                if(!motCle.isEmpty()) {
+                    motsCles.add(motCle);
+                }
             }
 
             List<String> images = new ArrayList<>();

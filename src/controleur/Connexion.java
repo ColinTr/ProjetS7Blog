@@ -18,8 +18,7 @@ public abstract class Connexion {
             em = emf.createEntityManager();
             return true;
         } catch(PersistenceException a){
-            emf = null;
-            em = null;
+            System.out.println("Dab");
             return false;
         }
     }
@@ -32,10 +31,11 @@ public abstract class Connexion {
         try{
             emf = Persistence.createEntityManagerFactory(mode,properties);
             em = emf.createEntityManager();
+
+
         }
-        catch(PersistenceException a){
-            emf = null;
-            em = null;
+        catch(PersistenceException e){
+
         }
 
     }

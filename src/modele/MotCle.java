@@ -30,4 +30,6 @@ public class MotCle {
     public String getMotCle() { return motCle; }
 
     public void ajouterMessage(Message message) { messages.add(message); }
+
+
 }

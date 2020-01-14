@@ -1,6 +1,7 @@
 package controleur;
 
 import modele.Message;
+import modele.ModeleDonnees;
 import modele.MotCle;
 
 import javax.persistence.Query;
@@ -32,5 +33,9 @@ public class MotCleDAO {
         }
 
         return listeARetourner;
+    }
+
+    public static MotCle getMotCle(String motCle){
+        return Connexion.getEntityManager().find(MotCle.class, motCle);
     }
 }
