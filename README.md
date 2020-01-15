@@ -45,7 +45,7 @@ Pour que notre application soit attrayante, nous avons choisi d’utiliser JavaF
 
 
 ***Connexion à l’application :***
-
+![Screenshot](images_readme/connexion.png)
 Pour se connecter à l’application, nous avons choisi d’utiliser le mail et le mot de passe qui sont 2 attributs imposés par le sujet.
 
 
@@ -65,12 +65,12 @@ Pour les fonctions de modification et de suppression d’un message, nous avons 
 
 
 ***Création d’un nouveau message :***
-
+![Screenshot](images_readme/fenetreCreerMessage.png)
 Pour créer un message, nous n’avons pas choisi de mettre de contraintes sur les différents champs de la fenêtre permettant de modifier un message. Ainsi, il est possible de poster un message vide. Il ne possédera donc que la date et l’utilisateur qui l’a posté. Il est donc possible de rajouter des nouvelles images et des nouveaux liens à son message. Lorsque le message est créé à l’aide la méthode ManipulationUtilisateur.posterMessage, on regarde si les mots-clés existent déjà ou non dans la base de données. S'ils n’existent pas ils sont créés, et si ils existent ils sont simplement associés au message. Pour ***modifier un message***, la même fenêtre s’affiche mais avec les champs pré-remplis.
 
 
 ***Fonction de recherche de messages :***
-
+![Screenshot](images_readme/recherche.png)
 Pour implémenter les fonctions de recherche par date et par mots-clés, nous avons choisi de placer deux champs différents en haut de notre fenêtre :
 - Un champ texte où il est possible de rentrer des mot-clés (séparés par un espace).
 - Un champ pour sélectionner une date dans un calendrier ou entrer la date à la main.
